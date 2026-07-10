@@ -1,5 +1,18 @@
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Overseer Systems</title>
+<title>Overseer Systems &#8212; Grow rooms, run by one system</title>
+<meta name="description" content="Modular, waterproof climate, CO&#8322; and irrigation control for commercial cultivation. One sealed device family, one color-coded RJ45 backbone, one intelligent platform.">
+<meta name="theme-color" content="#050807">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23050807'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='17'%20fill='none'%20stroke='%232FD6C0'%20stroke-width='6'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://overseer-inc.com/">
+<meta property="og:site_name" content="Overseer Systems">
+<meta property="og:title" content="Overseer Systems &#8212; Grow rooms, run by one system">
+<meta property="og:description" content="Modular, waterproof climate, CO&#8322; and irrigation control for commercial cultivation. One sealed device family, one backbone, one intelligent platform.">
+<meta property="og:image" content="https://overseer-inc.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   :root{
     --bg:#050807; --text:#E8F1EE; --mute:#8A9A93; --dim:#5A6A64;
@@ -389,6 +402,7 @@
       <a href="#/guide" data-nav="guide">Guide</a>
       <a href="#/builder" data-nav="build">Builder</a>
       <a href="#/ai" data-nav="ai">AI</a>
+      <a href="#/about" data-nav="about">About</a>
     </nav>
   </div></header>
   <main><div class="wrap" id="app"></div></main>
@@ -799,6 +813,38 @@ function aiHTML(){
   return h;
 }
 
+/* ---- about / contact page ---- */
+function aboutHTML(){
+  return '<div class="page">'
+  +'<p class="crumb"><a href="#/">\u2190 Overview</a></p>'
+  +'<div class="phead"><span class="chip">The company</span><h1>Built in Michigan.<br>Made for wet rooms.</h1>'
+  +'<p class="tag">Overseer Systems Inc. \u2014 cultivation control hardware and software.</p></div>'
+  +'<p class="sysintro" style="max-width:64ch">Overseer started on the floor of working grow facilities, looking at the same wall every grower knows: four separate controllers from the same vendor, splash-rated plastic in rooms that get hosed down, sensor data in one silo and harvest results in another. We build the alternative \u2014 one sealed device family on one backbone, run by one intelligent platform.</p>'
+  +'<section class="cat"><div class="cathead"><h2>Where we are</h2><span class="hint">HONEST STATUS</span></div>'
+  +'<div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
+  +'<div class="step"><p class="n"><i>1</i>HARDWARE</p><h4>Working prototypes</h4><p>The platform enclosures, the RS485 device bus and the flagship controller are bench-proven and running today.</p></div>'
+  +'<div class="step"><p class="n"><i>2</i>PILOT</p><h4>A real facility, committed</h4><p>An 18-room commercial cultivation facility in Metro Detroit is the proving ground \u2014 measured against its own records.</p></div>'
+  +'<div class="step"><p class="n"><i>3</i>SOFTWARE</p><h4>Intelligence in development</h4><p>The crop-autopilot and harvest-learning layer ships to pilot facilities first. <a href="#/ai" style="color:var(--accent)">See what&#39;s coming \u2192</a></p></div>'
+  +'</div></section>'
+  +'<section class="cat"><div class="cathead"><h2>What we believe</h2><span class="hint">THE SHORT VERSION</span></div>'
+  +'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">SEALED, NOT SPLASHED</p><h3>IP65/66 everywhere</h3><p>Grow rooms are wet rooms. Every enclosure we ship is dust-tight and hose-wash safe.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">ONE SYSTEM</p><h3>Consolidation over sprawl</h3><p>One touchscreen per room instead of four boxes. One vendor, one warranty, one spare-parts shelf.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">LOCAL FIRST</p><h3>The room runs itself</h3><p>Control logic lives on-site. Internet outages are an inconvenience, never a crop event.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">MEASURED CLAIMS</p><h3>Numbers you can check</h3><p>Our comparisons use real invoice prices; our results come from logged runs \u2014 not brochures.</p></div>'
+  +'</div></section>'
+  +'<section class="ctaband">'
+  +'<h2>Talk to us.</h2>'
+  +'<p>Quotes, demos, the pilot program, or a walk through your facility&#39;s numbers.</p>'
+  +'<div class="btnrow" style="justify-content:center">'
+  +'<a class="btn" href="mailto:hello@overseer-inc.com?subject='+encodeURIComponent('Hello Overseer')+'">hello@overseer-inc.com</a>'
+  +'<a class="btn ghost" href="#/builder">Spec my facility</a>'
+  +'</div>'
+  +'<p style="font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);margin:18px 0 0">OVERSEER SYSTEMS INC \u00b7 MICHIGAN, USA \u00b7 OVERSEER-INC.COM</p>'
+  +'</section>'
+  +'<div style="height:44px"></div></div>';
+}
+
 /* scroll-story engine for the AI page */
 var aiIO=null;
 function typeIn(el){
@@ -1022,6 +1068,11 @@ function route(){
     aiInit();
     setAccent('#B98BFF');
     setNav('ai'); window.scrollTo(0,0); return;
+  }
+  if(h.indexOf('#/about')===0){
+    app.innerHTML=aboutHTML();
+    setAccent('#2FD6C0');
+    setNav('about'); window.scrollTo(0,0); return;
   }
   var m=h.match(/^#\/product\/([a-z0-9]+)/);
   if(m && PRODUCTS[m[1]]){
