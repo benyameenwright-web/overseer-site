@@ -34,9 +34,31 @@
   .bar{display:flex;align-items:center;gap:20px;height:60px}
   .brand{font-family:var(--mono);letter-spacing:.2em;font-size:14px;font-weight:600;cursor:pointer}
   .brand b{color:var(--accent);transition:color .5s}
-  .nav{margin-left:auto;display:flex;gap:6px;font-family:var(--mono);font-size:12px;letter-spacing:.05em}
-  .nav a{color:var(--mute);padding:8px 13px;border-radius:8px}
-  .nav a:hover,.nav a.on{color:var(--text);background:rgba(150,200,185,.08)}
+  .nav{margin-left:auto;display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:12px;letter-spacing:.05em}
+  .nav > a{color:var(--mute);padding:8px 13px;border-radius:8px}
+  .nav > a:hover,.nav > a.on{color:var(--text);background:rgba(150,200,185,.08)}
+  .ndrop{position:relative}
+  .ntop{font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--mute);padding:8px 13px;
+    border-radius:8px;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:7px}
+  .ntop i{font-style:normal;font-size:8px;color:var(--dim);transition:transform .2s}
+  .ntop:hover,.ndrop:focus-within .ntop,.ndrop.open .ntop,.ntop.on{color:var(--text);background:rgba(150,200,185,.08)}
+  .ntop.on{color:var(--accent)}
+  .ndrop:hover .ntop i,.ndrop.open .ntop i,.ndrop:focus-within .ntop i{transform:rotate(180deg);color:var(--accent)}
+  .nmenu{position:absolute;top:calc(100% + 8px);right:0;min-width:196px;padding:6px;z-index:60;
+    background:rgba(7,11,10,.97);backdrop-filter:blur(12px);border:1px solid var(--edge2);border-radius:12px;
+    box-shadow:0 18px 44px -14px rgba(0,0,0,.9);
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .18s ease,transform .18s ease,visibility .18s}
+  .ndrop:hover .nmenu,.ndrop:focus-within .nmenu,.ndrop.open .nmenu{opacity:1;visibility:visible;transform:none}
+  .nmenu a{display:block;padding:9px 13px;border-radius:8px;color:var(--mute);white-space:nowrap}
+  .nmenu a:hover{color:var(--text);background:rgba(150,200,185,.08)}
+  .nmenu a.on{color:var(--accent)}
+  @media(max-width:560px){
+    .nav{gap:0}
+    .nav > a,.ntop{padding:8px 8px;font-size:11px}
+    .nmenu{right:auto;left:50%;transform:translate(-50%,-6px)}
+    .ndrop:hover .nmenu,.ndrop:focus-within .nmenu,.ndrop.open .nmenu{transform:translate(-50%,0)}
+  }
 
   main{flex:1}
   .page{animation:fade .45s ease}
@@ -468,13 +490,30 @@
     <div class="brand" onclick="location.hash='#/'">OVER<b>SEER</b></div>
     <nav class="nav">
       <a href="#/" data-nav="home">Overview</a>
-      <a href="#/products" data-nav="prod">Products</a>
-      <a href="#/system/climate" data-nav="sys">Systems</a>
-      <a href="#/guide" data-nav="guide">Guide</a>
-      <a href="#/builder" data-nav="build">Builder</a>
-      <a href="#/ai" data-nav="ai">AI</a>
-      <a href="#/compare" data-nav="cmp">Compare</a>
-      <a href="#/roadmap" data-nav="roadmap">Roadmap</a>
+      <div class="ndrop">
+        <button class="ntop" type="button">Products <i>&#9662;</i></button>
+        <div class="nmenu">
+          <a href="#/products" data-nav="prod">Catalog</a>
+          <a href="#/builder" data-nav="build">System Builder</a>
+          <a href="#/guide" data-nav="guide">Platform Guide</a>
+        </div>
+      </div>
+      <div class="ndrop">
+        <button class="ntop" type="button">Systems <i>&#9662;</i></button>
+        <div class="nmenu">
+          <a href="#/system/climate" data-nav="sys-climate">Climate &amp; Control</a>
+          <a href="#/system/co2" data-nav="sys-co2">CO&#8322; Safety</a>
+          <a href="#/system/irrigation" data-nav="sys-irrigation">Irrigation</a>
+        </div>
+      </div>
+      <div class="ndrop">
+        <button class="ntop" type="button">Why Overseer <i>&#9662;</i></button>
+        <div class="nmenu">
+          <a href="#/compare" data-nav="cmp">Compare</a>
+          <a href="#/ai" data-nav="ai">Intelligence</a>
+          <a href="#/roadmap" data-nav="roadmap">Roadmap</a>
+        </div>
+      </div>
     </nav>
   </div></header>
   <main><div class="wrap" id="app"></div></main>
@@ -1345,7 +1384,25 @@ function setAccent(hex){ tgtAcc=hex2rgb(hex); document.documentElement.style.set
 /* ---- router ---- */
 function setNav(key){
   document.querySelectorAll('[data-nav]').forEach(function(a){a.classList.toggle('on',a.dataset.nav===key);});
+  document.querySelectorAll('.ndrop').forEach(function(d){
+    d.querySelector('.ntop').classList.toggle('on', !!d.querySelector('[data-nav].on'));
+  });
 }
+/* dropdown menus: click toggles (touch), outside click / nav closes */
+(function(){
+  var drops=[].slice.call(document.querySelectorAll('.ndrop'));
+  function closeAll(){ drops.forEach(function(d){ d.classList.remove('open'); }); }
+  drops.forEach(function(d){
+    d.querySelector('.ntop').addEventListener('click',function(e){
+      e.stopPropagation();
+      var was=d.classList.contains('open');
+      closeAll();
+      if(!was) d.classList.add('open');
+    });
+  });
+  document.addEventListener('click',closeAll);
+  window.addEventListener('hashchange',closeAll);
+})();
 function route(){
   var h=location.hash||'#/';
   window._bgMode = h.indexOf('#/compare')===0 ? 1 : 0;
@@ -1353,7 +1410,7 @@ function route(){
   if(sm && SYSTEMS[sm[1]]){
     app.innerHTML=systemHTML(sm[1]);
     setAccent(SYSTEMS[sm[1]].accent);
-    setNav('sys'); window.scrollTo(0,0); return;
+    setNav('sys-'+sm[1]); window.scrollTo(0,0); return;
   }
   if(h.indexOf('#/products')===0){
     app.innerHTML=productsHTML();
