@@ -1403,9 +1403,36 @@ function setNav(key){
   document.addEventListener('click',closeAll);
   window.addEventListener('hashchange',closeAll);
 })();
+/* per-page atmosphere targets: [baseR,G,B, glowX,Y, glowR,G,B, strength] */
+var ATMOS={
+  home:      [0.012,0.020,0.018,  0.00, 0.45,  0.16,0.55,0.48, 0.050],
+  products:  [0.010,0.018,0.023,  0.55, 0.35,  0.20,0.45,0.65, 0.060],
+  product:   [0.011,0.019,0.020,  0.60,-0.30,  0.18,0.50,0.55, 0.050],
+  guide:     [0.011,0.021,0.015, -0.55, 0.20,  0.25,0.60,0.35, 0.055],
+  builder:   [0.010,0.017,0.019,  0.00,-0.50,  0.16,0.52,0.50, 0.060],
+  ai:        [0.015,0.013,0.024,  0.10, 0.50,  0.45,0.35,0.75, 0.065],
+  roadmap:   [0.017,0.014,0.010, -0.20,-0.45,  0.65,0.45,0.20, 0.050],
+  compare:   [0.012,0.016,0.018,  0.00, 0.00,  0.00,0.00,0.00, 0.000],
+  'sys-climate':   [0.010,0.017,0.024,  0.45, 0.40,  0.22,0.48,0.75, 0.060],
+  'sys-co2':       [0.019,0.012,0.012, -0.45, 0.40,  0.75,0.25,0.25, 0.055],
+  'sys-irrigation':[0.010,0.021,0.019,  0.45,-0.40,  0.18,0.65,0.55, 0.060]
+};
+function atmosKey(h){
+  if(h.indexOf('#/compare')===0)return 'compare';
+  if(h.indexOf('#/products')===0)return 'products';
+  if(h.indexOf('#/product/')===0)return 'product';
+  if(h.indexOf('#/guide')===0)return 'guide';
+  if(h.indexOf('#/builder')===0)return 'builder';
+  if(h.indexOf('#/ai')===0)return 'ai';
+  if(h.indexOf('#/roadmap')===0||h.indexOf('#/about')===0)return 'roadmap';
+  var m=h.match(/^#\/system\/([a-z0-9]+)/);
+  if(m)return 'sys-'+m[1];
+  return 'home';
+}
 function route(){
   var h=location.hash||'#/';
   window._bgMode = h.indexOf('#/compare')===0 ? 1 : 0;
+  window._tgtAtmos = ATMOS[atmosKey(h)]||ATMOS.home;
   var sm=h.match(/^#\/system\/([a-z0-9]+)/);
   if(sm && SYSTEMS[sm[1]]){
     app.innerHTML=systemHTML(sm[1]);
@@ -1469,6 +1496,7 @@ route();
   var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
   var fs=[
   'precision highp float;uniform float t;uniform vec2 r;uniform vec3 ac;uniform float md;',
+  'uniform vec3 bc;uniform vec2 gp;uniform vec3 gc;uniform float gs;',
   'float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}',
   'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
   'float a=h(i),b=h(i+vec2(1,0)),c=h(i+vec2(0,1)),d=h(i+vec2(1,1));',
@@ -1478,8 +1506,10 @@ route();
   'float tt=t*0.03;',
   'vec2 q=vec2(fbm(p*1.9+tt),fbm(p*1.9-tt+7.3));',
   'float f=fbm(p*2.6+q*1.7+vec2(0.,tt));',
-  'vec3 base=vec3(0.012,0.02,0.018);',
+  'vec3 base=bc;',
   'vec3 col=mix(base,ac*0.16,smoothstep(0.45,1.0,f)*0.65);',
+  '/* per-page atmosphere: one soft wash, position + hue vary by page */',
+  'col+=gc*exp(-dot(p-gp,p-gp)*1.5)*gs*(0.45+0.75*f);',
   '/* arena mode: two corners burning through the smoke */',
   'if(md>0.05){',
   'float br=0.9+0.1*sin(t*0.5);',
@@ -1501,7 +1531,16 @@ route();
   gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
   var lp=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(lp);gl.vertexAttribPointer(lp,2,gl.FLOAT,false,0,0);
   var uT=gl.getUniformLocation(pr,'t'),uR=gl.getUniformLocation(pr,'r'),uA=gl.getUniformLocation(pr,'ac'),uM=gl.getUniformLocation(pr,'md');
+  var uBC=gl.getUniformLocation(pr,'bc'),uGP=gl.getUniformLocation(pr,'gp'),uGC=gl.getUniformLocation(pr,'gc'),uGS=gl.getUniformLocation(pr,'gs');
   var curMode=0;
+  var curAt=[0.012,0.020,0.018, 0.0,0.45, 0.16,0.55,0.48, 0.05]; /* bc3, gp2, gc3, gs */
+  function tgtAt(){ return window._tgtAtmos||[0.012,0.020,0.018, 0.0,0.45, 0.16,0.55,0.48, 0.05]; }
+  function pushAt(a){
+    gl.uniform3f(uBC,a[0],a[1],a[2]);
+    gl.uniform2f(uGP,a[3],a[4]);
+    gl.uniform3f(uGC,a[5],a[6],a[7]);
+    gl.uniform1f(uGS,a[8]);
+  }
   function size(){var d=Math.min(devicePixelRatio||1,1.4);
     cv.width=innerWidth*d|0;cv.height=innerHeight*d|0;gl.viewport(0,0,cv.width,cv.height);gl.uniform2f(uR,cv.width,cv.height);}
   size();addEventListener('resize',size);
@@ -1510,6 +1549,9 @@ route();
     if(!start)start=ts;
     for(var i=0;i<3;i++)curAcc[i]+=(tgtAcc[i]-curAcc[i])*0.03;
     curMode+=((window._bgMode||0)-curMode)*0.04; /* fade arena in/out */
+    var ta=tgtAt();
+    for(var j=0;j<9;j++)curAt[j]+=(ta[j]-curAt[j])*0.02; /* slow atmosphere cross-fade */
+    pushAt(curAt);
     gl.uniform3f(uA,curAcc[0]/255,curAcc[1]/255,curAcc[2]/255);
     gl.uniform1f(uM,curMode);
     gl.uniform1f(uT,(ts-start)/1000);
@@ -1517,6 +1559,6 @@ route();
     if(!reduce)requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);
-  if(reduce){gl.uniform3f(uA,curAcc[0]/255,curAcc[1]/255,curAcc[2]/255);gl.uniform1f(uM,window._bgMode||0);gl.uniform1f(uT,10.0);gl.drawArrays(gl.TRIANGLES,0,3);}
+  if(reduce){pushAt(tgtAt());gl.uniform3f(uA,curAcc[0]/255,curAcc[1]/255,curAcc[2]/255);gl.uniform1f(uM,window._bgMode||0);gl.uniform1f(uT,10.0);gl.drawArrays(gl.TRIANGLES,0,3);}
 })();
 </script>
