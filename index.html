@@ -228,6 +228,25 @@
   .stb.des{color:#4FA8FF;border-color:color-mix(in srgb,#4FA8FF 55%,transparent);background:rgba(79,168,255,.08)}
   .stb.pln{color:var(--dim);border-color:var(--edge2);background:rgba(150,180,170,.05)}
   .stb.com{color:#FF5C5C;border-color:color-mix(in srgb,#FF5C5C 55%,transparent);background:rgba(255,92,92,.08)}
+  .stb.n2{color:var(--mute);border-color:var(--edge2);background:rgba(150,180,170,.05)}
+
+  /* comparison matrix */
+  .cmpwrap{overflow-x:auto;border:1px solid var(--edge);border-radius:16px;background:var(--panel)}
+  table.cmp{border-collapse:collapse;width:100%;min-width:820px}
+  .cmp thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--mute);
+    text-align:left;padding:14px 16px;border-bottom:1px solid var(--edge2)}
+  .cmp thead th.hovr{color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
+  .cmp td{padding:13px 16px;border-bottom:1px solid var(--edge);vertical-align:top;font-size:13px}
+  .cmp tbody tr:last-child td{border-bottom:0}
+  .cmp td.lab{font-weight:600;color:var(--text);width:30%}
+  .cmp td.covr{background:color-mix(in srgb,var(--accent) 5%,transparent)}
+  .cm{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+    font-family:var(--mono);font-size:12px;font-weight:700;border:1px solid}
+  .cm.y{color:#57C77A;border-color:color-mix(in srgb,#57C77A 55%,transparent);background:rgba(87,199,122,.1)}
+  .cm.n{color:#FF5C5C;border-color:color-mix(in srgb,#FF5C5C 45%,transparent);background:rgba(255,92,92,.08)}
+  .cm.p{color:#F5B23D;border-color:color-mix(in srgb,#F5B23D 50%,transparent);background:rgba(245,178,61,.08)}
+  .cm i{font-style:normal}
+  .cs{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--mute);margin-top:6px}
   .rendertag{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--dim);margin:10px 0 0;text-align:center}
   .rendertag a{color:#F5B23D}
 
@@ -422,6 +441,7 @@
       <a href="#/guide" data-nav="guide">Guide</a>
       <a href="#/builder" data-nav="build">Builder</a>
       <a href="#/ai" data-nav="ai">AI</a>
+      <a href="#/compare" data-nav="cmp">Compare</a>
       <a href="#/roadmap" data-nav="roadmap">Roadmap</a>
     </nav>
   </div></header>
@@ -833,6 +853,132 @@ function aiHTML(){
   return h;
 }
 
+/* ---- comparison page: overseer vs growlink vs trolmaster ---- */
+function cmc(mark,note){
+  var sym=mark==='y'?'\u2713':(mark==='n'?'\u2717':'~');
+  var cls=mark==='y'?'y':(mark==='n'?'n':'p');
+  return '<span class="cm '+cls+'"><i>'+sym+'</i></span>'+(note?'<span class="cs">'+note+'</span>':'');
+}
+function compareHTML(){
+  var h='<div class="page">'
+  +'<p class="crumb"><a href="#/">\u2190 Overview</a></p>'
+  +'<div class="phead"><span class="chip">Head to head</span><h1>Overseer vs. the incumbents.</h1>'
+  +'<p class="tag">Trolmaster \u00b7 Growlink \u00b7 Overseer \u2014 price and capability, round by round.</p></div>'
+
+  +'<div class="truthband">'
+  +'<p class="tbk">FAIRNESS RULES</p>'
+  +'<p class="tbt">Three rules so this page stays honest: <b>Trolmaster prices are actual invoices</b> paid by a live commercial facility \u2014 not estimates. <b>Growlink prices are their public list</b> (shop.growlink.com, July 2026). <b>Overseer prices are quoted list and our hardware is pre-production</b> \u2014 the incumbents ship today, we do not yet. <a href="#/roadmap" style="color:#F5B23D">The roadmap says exactly where we are.</a> We compare anyway, because the design decisions are the point.</p>'
+  +'</div>'
+
+  +'<section class="cat"><div class="cathead"><h2>The contenders</h2><span class="hint">THREE APPROACHES</span></div>'
+  +'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
+  +'<div class="card syscard"><p class="k" style="color:#FF5C5C">TROLMASTER</p><h3>The volume incumbent</h3><p>The default wall of controllers in North American grows. Affordable devices, four separate boxes per room, splash-rated plastics.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:#B98BFF">GROWLINK</p><h3>The software incumbent</h3><p>The strongest software story shipping today \u2014 cloud platform, crop blueprints, Nova AI \u2014 with hardware and subscription layered on top.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">OVERSEER</p><h3>The challenger</h3><p>One sealed device family, one backbone, one brain per room, no subscription tolls. Pre-production \u2014 and honest about it.</p></div>'
+  +'</div></section>'
+
+  +'<p class="aiscroll">SCROLL \u2014 FOUR ROUNDS, THEN THE VERDICT</p>'
+
+  +'<section class="aichap" data-hex="#4FA8FF">'
+  +'<div class="achcopy"><p class="pnumc">ROUND 1 \u00b7 THE ROOM</p>'
+  +'<h2>Four boxes on the wall,<br>or one.</h2>'
+  +'<p class="achp">Walk into a Trolmaster flower room and count the controllers: climate, irrigation, fertigation, CO\u2082 \u2014 four units, four screens, four alarm lists. The invoice for that stack is real, and it&#39;s beside this text. Growlink consolidates further than Trolmaster \u2014 a central controller plus expansion modules \u2014 but still assembles a room from parts.</p>'
+  +'<ul class="achlist"><li>Overseer&#39;s answer: one Obelisk per room, all four functions</li><li>$1,584 less than the invoiced stack \u2014 before counting fewer screens to manage</li><li>Every claim traceable: those are the actual per-unit prices paid</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>ONE ROOM&#39;S CONTROLLER STACK \u00b7 REAL INVOICES</div>'
+  +rrow('HCS-3 \u00b7 climate','Trolmaster','$932.57','n2',1)
+  +rrow('NFS-3 \u00b7 irrigation','Trolmaster','$932.40','n2',2)
+  +rrow('Aqua-X Pro + AMP-3 \u00b7 fertigation','Trolmaster','$1,851.05','n2',3)
+  +rrow('Carbon-X \u00b7 CO\u2082','Trolmaster','$367.50','n2',4)
+  +rrow('Four controllers, invoiced','The stack Overseer replaces','$4,083.52','com',5)
+  +rrow('Obelisk \u00b7 all four functions','Overseer \u2014 quoted list','$2,500','ok',6)
+  +'<p class="uifoot">SOURCE: SUPPLIER INVOICES TO A LIVE COMMERCIAL FACILITY</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap right" data-hex="#57C77A">'
+  +'<div class="achcopy"><p class="pnumc">ROUND 2 \u00b7 THE BUILD</p>'
+  +'<h2>Grow rooms are wet rooms.<br>Build like it.</h2>'
+  +'<p class="achp">Rooms get fogged, sprayed and hose-washed. The incumbent hardware on those walls is largely splash-rated consumer-grade plastic with mixed cabling. Overseer&#39;s entire platform is designed sealed \u2014 IP65/66 across every device \u2014 on one color-coded RJ45 backbone, with CO\u2082 life-safety on its own isolated bus that keeps working when everything else doesn&#39;t.</p>'
+  +'<ul class="achlist"><li>Design target: dust-tight, jet-wash safe, every enclosure</li><li>One cable language a new tech learns in an afternoon</li><li>Safety that never shares a wire with convenience</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>THE BUILD, SIDE BY SIDE</div>'
+  +rrow('Trolmaster','Splash-rated plastics \u00b7 mixed cabling \u00b7 CO\u2082 on shared comms','SHIPPING','n2',1)
+  +rrow('Growlink','Mixed enclosures \u00b7 cloud-centric architecture','SHIPPING','n2',2)
+  +rrow('Overseer','Sealed IP65/66 family \u00b7 RJ45 backbone \u00b7 isolated CO\u2082 bus \u00b7 RGB status on every box','DESIGNED','des',3)
+  +'<p class="uifoot">OVERSEER ENCLOSURES ARE A DESIGN TARGET \u2014 SEE THE ROADMAP</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap" data-hex="#F5B23D">'
+  +'<div class="achcopy"><p class="pnumc">ROUND 3 \u00b7 THE TOLL BOOTH</p>'
+  +'<h2>The price on the box<br>isn&#39;t the price.</h2>'
+  +'<p class="achp">Both incumbents keep charging after the sale. Growlink&#39;s commercial software runs $250\u2013$1,000 per facility <i>per month</i>, sensors past the cap bill monthly each, and their AI is metered in credits. Trolmaster charges $15 per device per month just for API access to your own sensor data. Over five years, a commercial facility&#39;s software bill alone can pass $60,000.</p>'
+  +'<ul class="achlist"><li>Overseer&#39;s commitment: control runs locally, no subscription required</li><li>Your data is yours \u2014 API access included, not tolled</li><li>Five-year software cost by design: $0</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>WHAT YOU KEEP PAYING \u00b7 LIST PRICES</div>'
+  +rrow('Growlink Bloom','Commercial plan, 32-sensor cap','$250/MO','n2',1)
+  +rrow('Growlink Harvest','Larger facilities, 100 sensors','$1,000/MO','n2',2)
+  +rrow('Growlink extra sensors','Past the plan cap, each','$6\u201310/MO','n2',3)
+  +rrow('Growlink Nova AI','Metered credits, per 10K','$60\u2013100','n2',4)
+  +rrow('Trolmaster API','Access to your own data, per device','$15/MO','n2',5)
+  +rrow('Overseer','Local control \u00b7 API included \u00b7 no subscription','$0','ok',6)
+  +'<p class="uifoot">GROWLINK: SHOP.GROWLINK.COM LIST, JULY 2026 \u00b7 TROLMASTER: PUBLISHED API TERMS</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap right" data-hex="#B98BFF">'
+  +'<div class="achcopy"><p class="pnumc">ROUND 4 \u00b7 THE SOFTWARE</p>'
+  +'<h2>Credit where due \u2014<br>then the difference.</h2>'
+  +'<p class="achp">Straight up: Growlink&#39;s software is the best shipping today. Blueprints, comparative analytics, a named AI \u2014 it&#39;s real and it works. Trolmaster&#39;s app monitors and schedules. Overseer Intelligence is still in development \u2014 but it&#39;s being built on a different foundation: it runs <i>in the room</i>, not in a subscription cloud, and your harvest data never becomes someone else&#39;s asset.</p>'
+  +'<ul class="achlist"><li>Growlink: strongest today \u2014 cloud-dependent, metered, subscription-gated</li><li>Overseer: local-first autopilot + harvest learning, <a href="#/ai" style="color:var(--accent)">in development</a></li><li>Alarms and CO\u2082 safety never wait on any software, ours included</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>SOFTWARE, HONESTLY SCORED</div>'
+  +rrow('Growlink OS','Blueprints \u00b7 Nova AI \u00b7 analytics \u2014 subscription + credits','SHIPPING','ok',1)
+  +rrow('Trolmaster app','Monitoring, schedules, alerts','BASIC','pln',2)
+  +rrow('Overseer Intelligence','Crop autopilot + harvest learning \u00b7 local-first','IN DEV','bld',3)
+  +'<p class="uifoot">YES, WE GAVE THE COMPETITOR THE GREEN BADGE \u2014 THIS PAGE STAYS HONEST</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="cat"><div class="cathead"><h2>The full matrix</h2><span class="hint">EVERYTHING AT ONCE</span></div>'
+  +'<div class="cmpwrap"><table class="cmp">'
+  +'<thead><tr><th></th><th class="hovr">OVERSEER</th><th>TROLMASTER</th><th>GROWLINK</th></tr></thead><tbody>'
+  +'<tr><td class="lab">Hardware you can buy today</td><td class="covr">'+cmc('n','Pre-production \u2014 see roadmap')+'</td><td>'+cmc('y','Ships today')+'</td><td>'+cmc('y','Ships today')+'</td></tr>'
+  +'<tr><td class="lab">One controller per room, all four functions</td><td class="covr">'+cmc('y','Obelisk \u2014 by design')+'</td><td>'+cmc('n','Up to 4 separate controllers')+'</td><td>'+cmc('p','Controller + expansion modules')+'</td></tr>'
+  +'<tr><td class="lab">Sealed IP65/66 across the line</td><td class="covr">'+cmc('y','Design target, every device')+'</td><td>'+cmc('n','Splash-rated class')+'</td><td>'+cmc('p','Varies by device')+'</td></tr>'
+  +'<tr><td class="lab">One color-coded cable backbone</td><td class="covr">'+cmc('y','RJ45 daisy-chain')+'</td><td>'+cmc('n','Mixed cabling')+'</td><td>'+cmc('p','Mixed wired + wireless')+'</td></tr>'
+  +'<tr><td class="lab">Isolated CO\u2082 life-safety bus</td><td class="covr">'+cmc('y','Dedicated line, fail-safe valves')+'</td><td>'+cmc('n')+'</td><td>'+cmc('n')+'</td></tr>'
+  +'<tr><td class="lab">RGB status on every device</td><td class="covr">'+cmc('y','The language of light')+'</td><td>'+cmc('n')+'</td><td>'+cmc('n')+'</td></tr>'
+  +'<tr><td class="lab">Full control with internet down</td><td class="covr">'+cmc('y','Local-first by design')+'</td><td>'+cmc('p','Largely local')+'</td><td>'+cmc('p','Cloud-centric platform')+'</td></tr>'
+  +'<tr><td class="lab">No software subscription required</td><td class="covr">'+cmc('y','$0 by commitment')+'</td><td>'+cmc('y','App free')+'</td><td>'+cmc('n','$250\u2013$1,000/mo commercial')+'</td></tr>'
+  +'<tr><td class="lab">API access to your own data</td><td class="covr">'+cmc('y','Included')+'</td><td>'+cmc('n','$15/device/month')+'</td><td>'+cmc('p','From $25/mo tier')+'</td></tr>'
+  +'<tr><td class="lab">Crop recipes + AI shipping today</td><td class="covr">'+cmc('n','In development')+'</td><td>'+cmc('n','Basic scheduling')+'</td><td>'+cmc('y','Growlink OS + Nova')+'</td></tr>'
+  +'<tr><td class="lab">Reference room: hardware + install</td><td class="covr"><span class="cs" style="font-size:12px;color:var(--text)">$13,415 quoted</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">$10,907 invoiced</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">Quote-based + subscription</span></td></tr>'
+  +'<tr><td class="lab">5-year software cost, commercial facility</td><td class="covr"><span class="cs" style="font-size:12px;color:var(--text)">$0</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">$0 (API extra if used)</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">$15,000\u2013$60,000+</span></td></tr>'
+  +'</tbody></table></div>'
+  +'<p style="font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);margin:12px 0 0">TROLMASTER: ACTUAL SUPPLIER INVOICES \u00b7 GROWLINK: PUBLIC LIST JULY 2026 \u00b7 OVERSEER: QUOTED LIST, PRE-PRODUCTION \u2014 TRADEMARKS BELONG TO THEIR OWNERS, REFERENCED FOR COMPARISON ONLY</p>'
+  +'</section>'
+
+  +'<section class="cat"><div class="cathead"><h2>Why we really stand out</h2><span class="hint">THE VERDICT</span></div>'
+  +'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">ONE DESIGN, NOT A CATALOG</p><h3>A system, not parts</h3><p>The incumbents grew by adding boxes. Overseer was designed once, as one family \u2014 same enclosures, same bus, same language of light, room after room.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">NO TOLL BOOTHS</p><h3>You own what you buy</h3><p>No monthly platform rent. No per-device fee to read your own sensors. No metered credits to ask your own data a question.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">THE ROOM STANDS ALONE</p><h3>Local first, always</h3><p>Cloud outages, subscription lapses, vendor pivots \u2014 none of them can touch a room that runs itself on local hardware.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">HONESTY AS STRATEGY</p><h3>We showed you their green badges</h3><p>This page credits competitors where they lead and labels our own hardware pre-production. Judge the company by that.</p></div>'
+  +'</div></section>'
+
+  +'<section class="ctaband">'
+  +'<h2>Run your own numbers.</h2>'
+  +'<p>Spec your facility in the builder, or ask for the full invoice-level comparison workbook.</p>'
+  +'<div class="btnrow" style="justify-content:center">'
+  +'<a class="btn" href="#/builder">Spec my facility</a>'
+  +'<a class="btn ghost" href="mailto:hello@overseer-inc.com?subject='+encodeURIComponent('Comparison \u2014 full workbook')+'">Request the full comparison</a>'
+  +'</div></section>'
+  +'<div style="height:44px"></div></div>';
+  return h;
+}
+
 /* ---- roadmap page: the honest state of development ---- */
 function rrow(name,detail,badge,cls,i){
   return '<div class="rrow" style="--i:'+i+'"><div><p class="rn">'+name+'</p>'
@@ -1173,6 +1319,12 @@ function route(){
     aiInit();
     setAccent('#B98BFF');
     setNav('ai'); window.scrollTo(0,0); return;
+  }
+  if(h.indexOf('#/compare')===0){
+    app.innerHTML=compareHTML();
+    aiInit();
+    setAccent('#4FA8FF');
+    setNav('cmp'); window.scrollTo(0,0); return;
   }
   if(h.indexOf('#/roadmap')===0 || h.indexOf('#/about')===0){
     app.innerHTML=roadmapHTML();
