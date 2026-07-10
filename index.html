@@ -230,16 +230,12 @@
   .stb.com{color:#FF5C5C;border-color:color-mix(in srgb,#FF5C5C 55%,transparent);background:rgba(255,92,92,.08)}
   .stb.n2{color:var(--mute);border-color:var(--edge2);background:rgba(150,180,170,.05)}
 
-  /* comparison fight card */
-  .aichap.fo{display:block;text-align:center;position:relative;min-height:0;padding:70px 0 34px;gap:0}
+  /* comparison face-off sections */
+  .aichap.fo{display:block;text-align:center;position:relative;min-height:0;padding:52px 0 34px;gap:0}
   .aichap.fo::before{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:100vw;height:100%;
     background:radial-gradient(55% 45% at 50% 48%,color-mix(in srgb,var(--accent) 6%,transparent),transparent 72%);
     pointer-events:none;z-index:-1;transition:background .6s}
-  .fonum{position:absolute;top:-6px;left:50%;transform:translateX(-50%);
-    font-size:clamp(96px,15vw,160px);font-weight:850;letter-spacing:-.04em;line-height:1;
-    color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--accent) 22%,transparent);
-    pointer-events:none;user-select:none;transition:-webkit-text-stroke .5s}
-  .fohead{position:relative;max-width:64ch;margin:0 auto 28px;padding-top:44px}
+  .fohead{position:relative;max-width:64ch;margin:0 auto 28px}
   .fohead h2{font-size:clamp(26px,4vw,44px);font-weight:830;letter-spacing:-.025em;line-height:1.05;margin:0;text-wrap:balance}
   .fosub{color:var(--mute);font-size:16px;max-width:54ch;margin:12px auto 0}
   .fogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left;max-width:1060px;margin:0 auto}
@@ -255,24 +251,16 @@
   .foprice i{font-style:normal;color:var(--dim)}
   .fol{margin:0;padding:0;list-style:none}
   .fol li{font-size:14px;color:var(--mute);padding:8px 0;border-top:1px solid var(--edge);line-height:1.45}
-  .fostampwrap{margin:30px auto 0}
-  .stamp{display:inline-block;font-family:var(--mono);font-weight:700;font-size:clamp(13px,2vw,17px);
-    letter-spacing:.22em;color:var(--vc);border:2px solid var(--vc);border-radius:9px;padding:11px 24px;
-    transform:rotate(-4deg);opacity:0;box-shadow:0 0 22px -8px var(--vc)}
-  .fo.in .stamp{animation:stampin .5s cubic-bezier(.2,1.4,.4,1) .8s forwards}
-  @keyframes stampin{from{opacity:0;transform:rotate(-15deg) scale(1.8)}to{opacity:1;transform:rotate(-4deg) scale(1)}}
-  .fowhy{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:14px 0 0}
+  .takeaway{max-width:660px;margin:30px auto 0;padding-top:16px;
+    border-top:1px solid color-mix(in srgb,var(--accent) 45%,transparent);
+    opacity:0;transform:translateY(12px)}
+  .fo.in .takeaway{animation:mrise .6s ease .55s forwards}
+  .takeaway .tk{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--accent);margin:0 0 8px;transition:color .5s}
+  .takeaway p{font-size:15px;color:var(--text);margin:0;line-height:1.6}
   @media(prefers-reduced-motion:reduce){
     .fo .fop{opacity:1;transform:none}
-    .fo .stamp,.fo.in .stamp{animation:none;opacity:1}
+    .takeaway{opacity:1;transform:none;transition:none}
   }
-  .scard{max-width:640px;margin:0 auto;border:1px solid var(--edge);border-radius:16px;overflow:hidden}
-  .srow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 20px;
-    border-bottom:1px solid var(--edge);background:var(--panel)}
-  .srow:last-child{border-bottom:0}
-  .srow .sr{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--mute)}
-  .srow .sw{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.14em}
-  .srow .sw i{font-style:normal;font-weight:400;font-size:11px;color:var(--dim);letter-spacing:.06em}
 
   /* comparison matrix */
   .cmpwrap{overflow-x:auto;border:1px solid var(--edge);border-radius:16px;background:var(--panel)}
@@ -921,11 +909,10 @@ function compareHTML(){
   +'<div class="card syscard"><p class="k" style="color:var(--accent)">OVERSEER</p><h3>The challenger</h3><p>One sealed device family, one backbone, one brain per room, no subscription tolls. Pre-production \u2014 and honest about it.</p></div>'
   +'</div></section>'
 
-  +'<p class="aiscroll">SCROLL \u2014 FOUR ROUNDS, THEN THE JUDGES&#39; CARD</p>'
+  +'<p class="aiscroll">PRICE AND CAPABILITY \u2014 TOPIC BY TOPIC</p>'
 
   +'<section class="aichap fo" data-hex="#4FA8FF">'
-  +'<span class="fonum" aria-hidden="true">01</span>'
-  +'<div class="fohead"><p class="pnumc">ROUND 1 \u00b7 THE ROOM</p>'
+  +'<div class="fohead"><p class="pnumc">CONTROLLERS \u00b7 THE ROOM</p>'
   +'<h2>How many boxes run one room?</h2>'
   +'<p class="fosub">Count the controllers on the wall of one flower room. The Trolmaster column is a real invoice, line by line.</p></div>'
   +'<div class="fogrid">'
@@ -939,13 +926,12 @@ function compareHTML(){
   +'<p class="fostat">1 <small>Obelisk</small></p><p class="foprice">$2,500 <i>\u00b7 quoted list</i></p>'
   +'<ul class="fol"><li>Climate + irrigation + fertigation + CO\u2082 logic</li><li>One screen, one alarm list</li><li>Fertigation built in \u2014 no separate head-end</li><li>CO\u2082 HMI $2,000 \u2014 one per facility, under their $2,219 Carbon-X + head-end pair</li><li>About $635 over the two-box stack</li></ul></div>'
   +'</div>'
-  +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
-  +'<p class="fowhy">TWO BOXES BECOME ONE, FERTIGATION INCLUDED \u2014 THE WIN IS CONSOLIDATION, NOT THE STICKER</p></div>'
+  +'<div class="takeaway"><span class="tk">BOTTOM LINE</span>'
+  +'<p>Two boxes become one at near-parity \u2014 with fertigation built in instead of parked in another room.</p></div>'
   +'</section>'
 
   +'<section class="aichap fo" data-hex="#57C77A">'
-  +'<span class="fonum" aria-hidden="true">02</span>'
-  +'<div class="fohead"><p class="pnumc">ROUND 2 \u00b7 THE BUILD</p>'
+  +'<div class="fohead"><p class="pnumc">ENCLOSURES \u00b7 THE BUILD</p>'
   +'<h2>Grow rooms are wet rooms.</h2>'
   +'<p class="fosub">Rooms get fogged, sprayed and hose-washed. What&#39;s actually on the wall matters.</p></div>'
   +'<div class="fogrid">'
@@ -959,13 +945,12 @@ function compareHTML(){
   +'<p class="fostat">IP65/66</p><p class="foprice">Designed <i>\u00b7 pre-production</i></p>'
   +'<ul class="fol"><li>Sealed across the entire family</li><li>One color-coded RJ45 backbone</li><li>CO\u2082 safety on its own isolated bus</li><li>RGB status ring on every box</li></ul></div>'
   +'</div>'
-  +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
-  +'<p class="fowhy">ON PAPER \u2014 OURS ISN&#39;T MANUFACTURED YET. <a href="#/roadmap" style="color:#F5B23D">THE ROADMAP SAYS SO IN BOLD.</a></p></div>'
+  +'<div class="takeaway"><span class="tk">BOTTOM LINE</span>'
+  +'<p>Sealed IP65/66 on one backbone against splash-rated plastic \u2014 ours is a design target until the enclosures are manufactured. <a href="#/roadmap" style="color:#F5B23D">The roadmap says so plainly.</a></p></div>'
   +'</section>'
 
   +'<section class="aichap fo" data-hex="#F5B23D">'
-  +'<span class="fonum" aria-hidden="true">03</span>'
-  +'<div class="fohead"><p class="pnumc">ROUND 3 \u00b7 THE TOLL BOOTH</p>'
+  +'<div class="fohead"><p class="pnumc">RECURRING COSTS</p>'
   +'<h2>The price on the box isn&#39;t the price.</h2>'
   +'<p class="fosub">What each vendor keeps charging after the sale \u2014 list prices, July 2026.</p></div>'
   +'<div class="fogrid">'
@@ -979,13 +964,12 @@ function compareHTML(){
   +'<p class="fostat">$0\u2013199<small>/mo</small></p><p class="foprice">Licensed facilities start free <i>\u00b7 flat otherwise</i></p>'
   +'<ul class="fol"><li>Control itself: free forever \u2014 no subscription to run your grow</li><li>Harvest learning + recipe export: free per licensed facility \u2014 a data partnership, not a toll</li><li>Full suite $149\u2013199/mo flat \u2014 unlimited everything, AI never metered</li><li>API included, under a mutual data-privacy contract</li></ul></div>'
   +'</div>'
-  +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
-  +'<p class="fowhy">LICENSED FACILITIES GET THE LEARNING LAYER FREE \u2014 5-YR: $0\u201312K VS $15\u201360K+ WITH TOLLS</p></div>'
+  +'<div class="takeaway"><span class="tk">BOTTOM LINE</span>'
+  +'<p>Licensed facilities get the learning layer free \u2014 over five years that&#39;s $0\u201312K flat against $15,000\u2013$60,000+ in subscriptions and tolls.</p></div>'
   +'</section>'
 
   +'<section class="aichap fo" data-hex="#B98BFF">'
-  +'<span class="fonum" aria-hidden="true">04</span>'
-  +'<div class="fohead"><p class="pnumc">ROUND 4 \u00b7 THE SOFTWARE</p>'
+  +'<div class="fohead"><p class="pnumc">SOFTWARE, TODAY</p>'
   +'<h2>Credit where due.</h2>'
   +'<p class="fosub">Scored honestly \u2014 including the part where we&#39;re behind.</p></div>'
   +'<div class="fogrid">'
@@ -999,19 +983,17 @@ function compareHTML(){
   +'<p class="fostat">In dev</p><p class="foprice"><a href="#/ai" style="color:var(--vc)">Intelligence</a> <i>\u00b7 pilot-first</i></p>'
   +'<ul class="fol"><li>Crop autopilot + harvest learning</li><li>Runs in the room, not the cloud</li><li>Alarms never wait on a model</li><li>Your data stays your asset</li></ul></div>'
   +'</div>'
-  +'<div class="fostampwrap"><span class="stamp" style="--vc:#B98BFF">ROUND TO GROWLINK</span>'
-  +'<p class="fowhy">THE BEST SOFTWARE YOU CAN BUY TODAY IS THEIRS. WE SAID WE&#39;D BE HONEST.</p></div>'
+  +'<div class="takeaway"><span class="tk">BOTTOM LINE</span>'
+  +'<p>The best software you can buy today is theirs. Ours is in development, built local-first \u2014 we don&#39;t pretend otherwise.</p></div>'
   +'</section>'
 
-  +'<section class="cat"><div class="cathead"><h2>The judges&#39; card</h2><span class="hint">FOUR ROUNDS, SCORED</span></div>'
-  +'<div class="scard">'
-  +'<div class="srow"><span class="sr">ROUND 1 \u00b7 THE ROOM</span><span class="sw" style="color:#2FD6C0">OVERSEER</span></div>'
-  +'<div class="srow"><span class="sr">ROUND 2 \u00b7 THE BUILD</span><span class="sw" style="color:#2FD6C0">OVERSEER <i>on paper</i></span></div>'
-  +'<div class="srow"><span class="sr">ROUND 3 \u00b7 THE TOLL BOOTH</span><span class="sw" style="color:#2FD6C0">OVERSEER</span></div>'
-  +'<div class="srow"><span class="sr">ROUND 4 \u00b7 THE SOFTWARE</span><span class="sw" style="color:#B98BFF">GROWLINK</span></div>'
-  +'<div class="srow"><span class="sr">SHIPPING HARDWARE, TODAY</span><span class="sw" style="color:#FF5C5C">THE INCUMBENTS</span></div>'
+  +'<section class="cat"><div class="cathead"><h2>Where each one wins</h2><span class="hint">THE HONEST SUMMARY</span></div>'
+  +'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
+  +'<div class="card syscard" style="--accent:#2FD6C0"><p class="k" style="color:#2FD6C0">OVERSEER</p><h3>Design &amp; economics</h3><p>One brain per room, sealed everything, one backbone, flat software with no meters \u2014 on paper today, in real rooms after the pilot.</p></div>'
+  +'<div class="card syscard" style="--accent:#B98BFF"><p class="k" style="color:#B98BFF">GROWLINK</p><h3>Software you can run now</h3><p>The strongest shipping platform in the category \u2014 blueprints, analytics, a working AI. Subscription-gated, but real.</p></div>'
+  +'<div class="card syscard" style="--accent:#FF5C5C"><p class="k" style="color:#FF5C5C">TROLMASTER</p><h3>Ubiquity, today</h3><p>On walls everywhere, affordable devices, an installer base that knows it. You can buy it this afternoon.</p></div>'
   +'</div>'
-  +'<p style="font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--dim);margin:14px 0 0;text-align:center">WE SCORED TWO AGAINST OURSELVES. THAT&#39;S HOW YOU KNOW THE OTHER THREE ARE REAL.</p>'
+  +'<p style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--dim);margin:14px 0 0;text-align:center">WE LIST WHERE WE LOSE. THAT&#39;S HOW YOU CAN TRUST WHERE WE WIN.</p>'
   +'</section>'
 
   +'<section class="cat"><div class="cathead"><h2>The full matrix</h2><span class="hint">EVERYTHING AT ONCE</span></div>'
