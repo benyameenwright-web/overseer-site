@@ -1,13 +1,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Overseer Systems &#8212; Grow rooms, run by one system</title>
+<title>Overseer Systems &#8212; Every room, run by one system</title>
 <meta name="description" content="Modular, waterproof climate, CO&#8322; and irrigation control for commercial cultivation. One sealed device family, one color-coded RJ45 backbone, one intelligent platform.">
 <meta name="theme-color" content="#050807">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23050807'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='17'%20fill='none'%20stroke='%232FD6C0'%20stroke-width='6'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://overseer-inc.com/">
 <meta property="og:site_name" content="Overseer Systems">
-<meta property="og:title" content="Overseer Systems &#8212; Grow rooms, run by one system">
+<meta property="og:title" content="Overseer Systems &#8212; Every room, run by one system">
 <meta property="og:description" content="Modular, waterproof climate, CO&#8322; and irrigation control for commercial cultivation. One sealed device family, one backbone, one intelligent platform.">
 <meta property="og:image" content="https://overseer-inc.com/og.png">
 <meta property="og:image:width" content="1200">
@@ -211,6 +211,26 @@
   .whub .wgo{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;margin:0;color:var(--accent);opacity:0;transition:opacity .45s}
   .whub.hot .wgo{opacity:1}
 
+  /* roadmap page */
+  .truthband{margin:26px 0 4px;border:1px solid color-mix(in srgb,#F5B23D 45%,transparent);border-radius:16px;
+    background:rgba(245,178,61,.06);padding:22px 26px}
+  .truthband .tbk{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:#F5B23D;margin:0 0 10px}
+  .truthband .tbt{font-size:15px;line-height:1.7;color:var(--text);margin:0;max-width:78ch}
+  .truthband .tbt b{color:#F5B23D}
+  .rrow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 4px;
+    border-bottom:1px solid var(--edge);opacity:0;transform:translateX(-14px)}
+  .aichap.in .rrow{animation:mrise .5s ease forwards;animation-delay:calc(var(--i)*.13s + .3s)}
+  .rrow .rn{font-size:13.5px;font-weight:700;color:var(--text);margin:0}
+  .rrow .rd{font-family:var(--mono);font-size:10.5px;color:var(--mute);margin:2px 0 0;letter-spacing:.02em}
+  .stb{flex:0 0 auto;font-family:var(--mono);font-size:9px;letter-spacing:.12em;border-radius:99px;padding:4px 10px;border:1px solid}
+  .stb.ok{color:#57C77A;border-color:color-mix(in srgb,#57C77A 55%,transparent);background:rgba(87,199,122,.08)}
+  .stb.bld{color:#F5B23D;border-color:color-mix(in srgb,#F5B23D 55%,transparent);background:rgba(245,178,61,.08)}
+  .stb.des{color:#4FA8FF;border-color:color-mix(in srgb,#4FA8FF 55%,transparent);background:rgba(79,168,255,.08)}
+  .stb.pln{color:var(--dim);border-color:var(--edge2);background:rgba(150,180,170,.05)}
+  .stb.com{color:#FF5C5C;border-color:color-mix(in srgb,#FF5C5C 55%,transparent);background:rgba(255,92,92,.08)}
+  .rendertag{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--dim);margin:10px 0 0;text-align:center}
+  .rendertag a{color:#F5B23D}
+
   /* AI / intelligence page */
   .aiscroll{font-family:var(--mono);font-size:10px;letter-spacing:.3em;color:var(--dim);text-align:center;margin:40px 0 0}
   .aiscroll::after{content:"";display:block;width:1px;height:30px;margin:10px auto 0;background:linear-gradient(var(--dim),transparent)}
@@ -402,7 +422,7 @@
       <a href="#/guide" data-nav="guide">Guide</a>
       <a href="#/builder" data-nav="build">Builder</a>
       <a href="#/ai" data-nav="ai">AI</a>
-      <a href="#/about" data-nav="about">About</a>
+      <a href="#/roadmap" data-nav="roadmap">Roadmap</a>
     </nav>
   </div></header>
   <main><div class="wrap" id="app"></div></main>
@@ -432,7 +452,7 @@ function homeHTML(){
   +'<section class="homehero">'
   +'<div>'
   +'<p class="eyebrow">One ecosystem. Total control.</p>'
-  +'<h1>Grow rooms, run by <em>one system.</em></h1>'
+  +'<h1>Every room, run by <em>one system.</em></h1>'
   +'<p class="hlede">Overseer Systems builds modular, waterproof climate, CO\u2082 and irrigation control for commercial cultivation \u2014 one sealed device family, one color-coded RJ45 backbone, one intelligent platform.</p>'
   +'<div class="btnrow" style="margin-top:28px">'
   +'<a class="btn" href="#/products">Browse the line</a>'
@@ -813,36 +833,120 @@ function aiHTML(){
   return h;
 }
 
-/* ---- about / contact page ---- */
-function aboutHTML(){
-  return '<div class="page">'
+/* ---- roadmap page: the honest state of development ---- */
+function rrow(name,detail,badge,cls,i){
+  return '<div class="rrow" style="--i:'+i+'"><div><p class="rn">'+name+'</p>'
+   +(detail?'<p class="rd">'+detail+'</p>':'')+'</div><span class="stb '+cls+'">'+badge+'</span></div>';
+}
+function roadmapHTML(){
+  var h='<div class="page">'
   +'<p class="crumb"><a href="#/">\u2190 Overview</a></p>'
-  +'<div class="phead"><span class="chip">The company</span><h1>Built in Michigan.<br>Made for wet rooms.</h1>'
-  +'<p class="tag">Overseer Systems Inc. \u2014 cultivation control hardware and software.</p></div>'
-  +'<p class="sysintro" style="max-width:64ch">Overseer started on the floor of working grow facilities, looking at the same wall every grower knows: four separate controllers from the same vendor, splash-rated plastic in rooms that get hosed down, sensor data in one silo and harvest results in another. We build the alternative \u2014 one sealed device family on one backbone, run by one intelligent platform.</p>'
-  +'<section class="cat"><div class="cathead"><h2>Where we are</h2><span class="hint">HONEST STATUS</span></div>'
-  +'<div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
-  +'<div class="step"><p class="n"><i>1</i>HARDWARE</p><h4>Working prototypes</h4><p>The platform enclosures, the RS485 device bus and the flagship controller are bench-proven and running today.</p></div>'
-  +'<div class="step"><p class="n"><i>2</i>PILOT</p><h4>A real facility, committed</h4><p>An 18-room commercial cultivation facility in Metro Detroit is the proving ground \u2014 measured against its own records.</p></div>'
-  +'<div class="step"><p class="n"><i>3</i>SOFTWARE</p><h4>Intelligence in development</h4><p>The crop-autopilot and harvest-learning layer ships to pilot facilities first. <a href="#/ai" style="color:var(--accent)">See what&#39;s coming \u2192</a></p></div>'
-  +'</div></section>'
-  +'<section class="cat"><div class="cathead"><h2>What we believe</h2><span class="hint">THE SHORT VERSION</span></div>'
+  +'<div class="phead"><span class="chip">The roadmap</span><h1>Exactly where we are.</h1>'
+  +'<p class="tag">Overseer Systems Inc. \u2014 what is proven, what is being built, and what is still ahead.</p></div>'
+  +'<p class="sysintro" style="max-width:64ch">Overseer started on the floor of working grow facilities, looking at the wall every grower knows: four separate controllers, splash-rated plastic in rooms that get hosed down, data in silos. We are building the alternative \u2014 and this page tells you precisely how far along that build is.</p>'
+
+  +'<div class="truthband">'
+  +'<p class="tbk">READ THIS FIRST</p>'
+  +'<p class="tbt">The product images on this site are <b>design renders</b> \u2014 the hardware we are building toward, not photographs of finished goods. Today, Overseer runs on <b>development boards in temporary enclosures</b>. The sealed platform enclosures you see rendered have not been manufactured yet. That is what honest prototype-stage looks like, and this page exists so you always know exactly which is which.</p>'
+  +'</div>'
+
+  +'<p class="aiscroll">SCROLL \u2014 FIVE PHASES, NO SPIN</p>'
+
+  +'<section class="aichap" data-hex="#57C77A">'
+  +'<div class="achcopy"><p class="pnumc">PHASE 1 \u00b7 PROVEN ON THE BENCH</p>'
+  +'<h2>The theory works.<br>We can show you.</h2>'
+  +'<p class="achp">The core of Overseer \u2014 many sealed devices talking on one wire, run by one brain \u2014 is not an idea on a slide. It runs on our bench today: two devices live on the RS485 bus as addressable nodes, real sensors streaming, real relays switching, the RGB status language working.</p>'
+  +'<p class="achp" style="font-size:13.5px">What it runs on right now, deliberately: a Raspberry Pi as the brain, $6 microcontroller boards as the nodes, off-the-shelf sensor modules, temporary enclosures. We prove theory on cheap hardware <i>before</i> spending tooling money \u2014 that discipline is the point.</p></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>ON THE BENCH \u00b7 WORKING TODAY</div>'
+  +rrow('Device network (RS485 bus)','Two devices live as addressable nodes on one wire','PROVEN','ok',1)
+  +rrow('Environmental sensing','Temp \u00b7 RH \u00b7 VPD \u00b7 light \u00b7 CO\u2082 streaming from real sensors','PROVEN','ok',2)
+  +rrow('Relay control + status ring','Switching real loads, RGB language working, on-device display','PROVEN','ok',3)
+  +rrow('Central brain logic','Room loop running \u2014 on a dev board, not final hardware','PROVEN','ok',4)
+  +rrow('Crop autopilot (software MVP)','Stage targets drive the loop; harvests get logged','WORKING','ok',5)
+  +'<p class="uifoot">DEV-BOARD HARDWARE \u00b7 TEMPORARY ENCLOSURES \u00b7 THAT IS THE HONEST PART</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap right" data-hex="#F5B23D">'
+  +'<div class="achcopy"><p class="pnumc">PHASE 2 \u00b7 IN PROGRESS NOW</p>'
+  +'<h2>Widening the proof.</h2>'
+  +'<p class="achp">With the loop proven end-to-end, we are expanding what hangs on it: more node types in firmware, the facility dashboard taking shape, and the unglamorous engineering that makes a product real \u2014 bills of materials and honest landed costs for every device in the line.</p>'
+  +'<ul class="achlist"><li>Facility dashboard under active development</li><li>Node firmware family expanding beyond the first two devices</li><li>Every product costed to the component \u2014 pricing holds \u226550% margin on real landed cost</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>ON THE DESK \u00b7 THIS QUARTER</div>'
+  +rrow('Facility dashboard (GUI)','Room views, device manager, alarms','BUILDING','bld',1)
+  +rrow('Node firmware family','Additional device types on the proven bus','BUILDING','bld',2)
+  +rrow('BOMs + landed costs','Component-level, per product','COSTED','ok',3)
+  +rrow('Enclosure quotes','Manufacturing quotes for the platform family','PENDING','bld',4)
+  +'<p class="uifoot">SOFTWARE MOVES FIRST \u2014 IT DOESN&#39;T NEED TOOLING MONEY</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap" data-hex="#4FA8FF">'
+  +'<div class="achcopy"><p class="pnumc">PHASE 3 \u00b7 THE TRANSITION</p>'
+  +'<h2>Dev boards out.<br>Real hardware in.</h2>'
+  +'<p class="achp">This is the phase investment accelerates: everything proven on temporary hardware moves onto our own. Custom circuit boards replace the dev boards. The sealed IP65/66 enclosures go from renders to tooling to first articles. The Obelisk becomes an actual touchscreen unit you can hold.</p>'
+  +'<ul class="achlist"><li>Custom PCBs carrying the proven firmware</li><li>Platform enclosures manufactured \u2014 the renders made real</li><li>Obelisk touchscreen build + CO\u2082 safety chain hardware</li><li>Small production batch for the pilot</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>NEXT \u00b7 WHAT THE RAISE BUYS</div>'
+  +rrow('Production circuit boards','Designs follow the proven bench firmware','PLANNED','pln',1)
+  +rrow('Sealed IP65/66 enclosures','Designed (the renders) \u2014 not yet manufactured','DESIGNED','des',2)
+  +rrow('Obelisk touchscreen unit','Concept + BOM costed; build follows enclosures','DESIGNED','des',3)
+  +rrow('CO\u2082 safety chain hardware','Architecture set; hardware not yet built','DESIGNED','des',4)
+  +rrow('Pilot production batch','Enough units to instrument real rooms','PLANNED','pln',5)
+  +'<p class="uifoot">NOTHING HERE IS SOLD AS FINISHED \u2014 THAT IS THE POINT OF THIS PAGE</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap right" data-hex="#FF5C5C">'
+  +'<div class="achcopy"><p class="pnumc">PHASE 4 \u00b7 THE PILOT</p>'
+  +'<h2>Real rooms.<br>Real receipts.</h2>'
+  +'<p class="achp">An 18-room commercial cultivation facility in Metro Detroit is committed as the proving ground. Overseer installs on production hardware and gets scored against the facility&#39;s own records \u2014 utility bills, harvest logs, incident history. Not our numbers: theirs.</p>'
+  +'<ul class="achlist"><li>Side-by-side with the incumbent gear already on the walls</li><li>Energy, yield consistency and downtime measured, not estimated</li><li>Output: a verified cost-of-ownership number anyone can audit</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>THE PROVING GROUND</div>'
+  +rrow('Facility','18 rooms, commercial, Metro Detroit','COMMITTED','com',1)
+  +rrow('Baseline data','Utility bills, harvest records, incident log','THEIRS','com',2)
+  +rrow('Install','After Phase 3 production prototypes exist','SCHEDULED','pln',3)
+  +rrow('Deliverable','Audited 5-year cost-of-ownership comparison','MEASURED','com',4)
+  +'<p class="uifoot">THE PILOT&#39;S NUMBERS BECOME THE SALES EVIDENCE FOR EVERY FACILITY AFTER IT</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="aichap" data-hex="#2FD6C0">'
+  +'<div class="achcopy"><p class="pnumc">PHASE 5 \u00b7 PRODUCTION</p>'
+  +'<h2>Then, and only then:<br>scale.</h2>'
+  +'<p class="achp">With pilot data in hand, the rest is execution: certification, manufacturing partners, first customer installs, and the Intelligence layer rolling out to the facilities that helped prove it.</p>'
+  +'<ul class="achlist"><li>Safety and compliance certification on production hardware</li><li>Manufacturing partners locked on validated designs</li><li>First customer facilities \u2014 sold on measured results</li><li><a href="#/ai" style="color:var(--accent)">Overseer Intelligence</a> ships to pilot facilities first</li></ul></div>'
+  +'<div class="achmock"><div class="uimock">'
+  +'<div class="uihead"><span class="uidot"></span>AFTER THE PILOT</div>'
+  +rrow('Certifications','On production hardware, once it exists','PLANNED','pln',1)
+  +rrow('Manufacturing at volume','Partners quoted on validated designs','PLANNED','pln',2)
+  +rrow('First customer installs','Sold on the pilot&#39;s audited numbers','PLANNED','pln',3)
+  +rrow('Intelligence rollout','Crop autopilot + harvest learning','PLANNED','pln',4)
+  +'<p class="uifoot">EVERYTHING ON THIS PAGE UPDATES AS STATUS CHANGES</p>'
+  +'</div></div>'
+  +'</section>'
+
+  +'<section class="cat"><div class="cathead"><h2>Why we build this way</h2><span class="hint">THE DISCIPLINE</span></div>'
   +'<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">'
-  +'<div class="card syscard"><p class="k" style="color:var(--accent)">SEALED, NOT SPLASHED</p><h3>IP65/66 everywhere</h3><p>Grow rooms are wet rooms. Every enclosure we ship is dust-tight and hose-wash safe.</p></div>'
-  +'<div class="card syscard"><p class="k" style="color:var(--accent)">ONE SYSTEM</p><h3>Consolidation over sprawl</h3><p>One touchscreen per room instead of four boxes. One vendor, one warranty, one spare-parts shelf.</p></div>'
-  +'<div class="card syscard"><p class="k" style="color:var(--accent)">LOCAL FIRST</p><h3>The room runs itself</h3><p>Control logic lives on-site. Internet outages are an inconvenience, never a crop event.</p></div>'
-  +'<div class="card syscard"><p class="k" style="color:var(--accent)">MEASURED CLAIMS</p><h3>Numbers you can check</h3><p>Our comparisons use real invoice prices; our results come from logged runs \u2014 not brochures.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">CHEAP PROOF FIRST</p><h3>Theory before tooling</h3><p>Enclosure molds and PCB runs are expensive to change. Dev boards aren&#39;t. We validate every behavior on hardware that costs almost nothing to be wrong on.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">RENDERS LABELED</p><h3>Concepts stay concepts</h3><p>Every product image on this site is a design target. When photographs of production hardware exist, they replace the renders \u2014 and we&#39;ll say so.</p></div>'
+  +'<div class="card syscard"><p class="k" style="color:var(--accent)">MEASURED CLAIMS</p><h3>Numbers you can audit</h3><p>Our cost comparisons use real invoice prices. Our performance claims will come from the pilot&#39;s logged runs \u2014 until then, we don&#39;t make them.</p></div>'
   +'</div></section>'
+
   +'<section class="ctaband">'
-  +'<h2>Talk to us.</h2>'
-  +'<p>Quotes, demos, the pilot program, or a walk through your facility&#39;s numbers.</p>'
+  +'<h2>Ask us anything. We&#39;ll show you the bench.</h2>'
+  +'<p>Investors and partners: the prototypes, the BOMs and the plan are all real \u2014 and all inspectable.</p>'
   +'<div class="btnrow" style="justify-content:center">'
-  +'<a class="btn" href="mailto:hello@overseer-inc.com?subject='+encodeURIComponent('Hello Overseer')+'">hello@overseer-inc.com</a>'
-  +'<a class="btn ghost" href="#/builder">Spec my facility</a>'
+  +'<a class="btn" href="mailto:hello@overseer-inc.com?subject='+encodeURIComponent('Roadmap \u2014 show me the bench')+'">hello@overseer-inc.com</a>'
+  +'<a class="btn ghost" href="#/products">See the design targets</a>'
   +'</div>'
   +'<p style="font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--dim);margin:18px 0 0">OVERSEER SYSTEMS INC \u00b7 MICHIGAN, USA \u00b7 OVERSEER-INC.COM</p>'
   +'</section>'
   +'<div style="height:44px"></div></div>';
+  return h;
 }
 
 /* scroll-story engine for the AI page */
@@ -968,7 +1072,8 @@ function prodHTML(key){
   +'<p class="crumb"><a href="#/products">\u2190 All products</a></p>'
   +'<div class="phead"><span class="chip">'+p.cat+'</span><h1>'+p.name+'</h1><p class="tag">'+p.tag+'</p></div>'
   +'<div class="prod">'
-  +'<div class="viewer"><div class="vhalo"></div><img src="'+(d.hero||'')+'" alt="'+esc(p.name)+'"></div>'
+  +'<div><div class="viewer"><div class="vhalo"></div><img src="'+(d.hero||'')+'" alt="'+esc(p.name)+'"></div>'
+  +'<p class="rendertag">DESIGN CONCEPT RENDER \u00b7 <a href="#/roadmap">SEE BUILD STATUS ON THE ROADMAP \u2192</a></p></div>'
   +'<div class="pcopy">'
   +'<p class="blurb">'+p.blurb+'</p>'
   +'<h3>Key features</h3><ul class="feats">'+p.feats.map(function(f){return '<li>'+f+'</li>';}).join('')+'</ul>'
@@ -1069,10 +1174,11 @@ function route(){
     setAccent('#B98BFF');
     setNav('ai'); window.scrollTo(0,0); return;
   }
-  if(h.indexOf('#/about')===0){
-    app.innerHTML=aboutHTML();
-    setAccent('#2FD6C0');
-    setNav('about'); window.scrollTo(0,0); return;
+  if(h.indexOf('#/roadmap')===0 || h.indexOf('#/about')===0){
+    app.innerHTML=roadmapHTML();
+    aiInit();
+    setAccent('#57C77A');
+    setNav('roadmap'); window.scrollTo(0,0); return;
   }
   var m=h.match(/^#\/product\/([a-z0-9]+)/);
   if(m && PRODUCTS[m[1]]){
