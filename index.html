@@ -230,6 +230,47 @@
   .stb.com{color:#FF5C5C;border-color:color-mix(in srgb,#FF5C5C 55%,transparent);background:rgba(255,92,92,.08)}
   .stb.n2{color:var(--mute);border-color:var(--edge2);background:rgba(150,180,170,.05)}
 
+  /* comparison fight card */
+  .aichap.fo{display:block;text-align:center;position:relative;min-height:0;padding:70px 0 34px;gap:0}
+  .fonum{position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+    font-size:clamp(96px,15vw,160px);font-weight:850;letter-spacing:-.04em;line-height:1;
+    color:transparent;-webkit-text-stroke:1px color-mix(in srgb,var(--accent) 22%,transparent);
+    pointer-events:none;user-select:none;transition:-webkit-text-stroke .5s}
+  .fohead{position:relative;max-width:64ch;margin:0 auto 28px;padding-top:44px}
+  .fohead h2{font-size:clamp(26px,4vw,44px);font-weight:830;letter-spacing:-.025em;line-height:1.05;margin:0;text-wrap:balance}
+  .fosub{color:var(--mute);font-size:14.5px;max-width:54ch;margin:12px auto 0}
+  .fogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left;max-width:1060px;margin:0 auto}
+  @media(max-width:880px){.fogrid{grid-template-columns:1fr;max-width:480px}}
+  .fo .fop{border:1px solid var(--edge);border-top:3px solid var(--vc);border-radius:14px;
+    background:var(--panel);backdrop-filter:blur(8px);padding:18px 20px;opacity:0;transform:translateY(26px)}
+  .fo.in .fop{animation:mrise .55s ease forwards;animation-delay:calc(var(--i)*.16s)}
+  .fop.us{box-shadow:0 0 30px -12px var(--vc);border-color:color-mix(in srgb,var(--vc) 30%,var(--edge));border-top-color:var(--vc)}
+  .fovn{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--vc);margin:0 0 12px}
+  .fostat{font-size:clamp(24px,2.8vw,32px);font-weight:850;letter-spacing:-.02em;color:var(--text);margin:0 0 2px;line-height:1}
+  .fostat small{font-size:13px;font-weight:600;color:var(--mute);letter-spacing:0}
+  .foprice{font-family:var(--mono);font-size:12px;color:var(--vc);margin:4px 0 14px}
+  .foprice i{font-style:normal;color:var(--dim)}
+  .fol{margin:0;padding:0;list-style:none}
+  .fol li{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--mute);padding:6px 0;border-top:1px solid var(--edge)}
+  .fostampwrap{margin:30px auto 0}
+  .stamp{display:inline-block;font-family:var(--mono);font-weight:700;font-size:clamp(13px,2vw,17px);
+    letter-spacing:.22em;color:var(--vc);border:2px solid var(--vc);border-radius:9px;padding:11px 24px;
+    transform:rotate(-4deg);opacity:0;box-shadow:0 0 22px -8px var(--vc)}
+  .fo.in .stamp{animation:stampin .5s cubic-bezier(.2,1.4,.4,1) .8s forwards}
+  @keyframes stampin{from{opacity:0;transform:rotate(-15deg) scale(1.8)}to{opacity:1;transform:rotate(-4deg) scale(1)}}
+  .fowhy{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);margin:14px 0 0}
+  @media(prefers-reduced-motion:reduce){
+    .fo .fop{opacity:1;transform:none}
+    .fo .stamp,.fo.in .stamp{animation:none;opacity:1}
+  }
+  .scard{max-width:640px;margin:0 auto;border:1px solid var(--edge);border-radius:16px;overflow:hidden}
+  .srow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 20px;
+    border-bottom:1px solid var(--edge);background:var(--panel)}
+  .srow:last-child{border-bottom:0}
+  .srow .sr{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--mute)}
+  .srow .sw{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em}
+  .srow .sw i{font-style:normal;font-weight:400;font-size:10px;color:var(--dim);letter-spacing:.06em}
+
   /* comparison matrix */
   .cmpwrap{overflow-x:auto;border:1px solid var(--edge);border-radius:16px;background:var(--panel)}
   table.cmp{border-collapse:collapse;width:100%;min-width:820px}
@@ -877,68 +918,97 @@ function compareHTML(){
   +'<div class="card syscard"><p class="k" style="color:var(--accent)">OVERSEER</p><h3>The challenger</h3><p>One sealed device family, one backbone, one brain per room, no subscription tolls. Pre-production \u2014 and honest about it.</p></div>'
   +'</div></section>'
 
-  +'<p class="aiscroll">SCROLL \u2014 FOUR ROUNDS, THEN THE VERDICT</p>'
+  +'<p class="aiscroll">SCROLL \u2014 FOUR ROUNDS, THEN THE JUDGES&#39; CARD</p>'
 
-  +'<section class="aichap" data-hex="#4FA8FF">'
-  +'<div class="achcopy"><p class="pnumc">ROUND 1 \u00b7 THE ROOM</p>'
-  +'<h2>Four boxes on the wall,<br>or one.</h2>'
-  +'<p class="achp">Walk into a Trolmaster flower room and count the controllers: climate, irrigation, fertigation, CO\u2082 \u2014 four units, four screens, four alarm lists. The invoice for that stack is real, and it&#39;s beside this text. Growlink consolidates further than Trolmaster \u2014 a central controller plus expansion modules \u2014 but still assembles a room from parts.</p>'
-  +'<ul class="achlist"><li>Overseer&#39;s answer: one Obelisk per room, all four functions</li><li>$1,584 less than the invoiced stack \u2014 before counting fewer screens to manage</li><li>Every claim traceable: those are the actual per-unit prices paid</li></ul></div>'
-  +'<div class="achmock"><div class="uimock">'
-  +'<div class="uihead"><span class="uidot"></span>ONE ROOM&#39;S CONTROLLER STACK \u00b7 REAL INVOICES</div>'
-  +rrow('HCS-3 \u00b7 climate','Trolmaster','$932.57','n2',1)
-  +rrow('NFS-3 \u00b7 irrigation','Trolmaster','$932.40','n2',2)
-  +rrow('Aqua-X Pro + AMP-3 \u00b7 fertigation','Trolmaster','$1,851.05','n2',3)
-  +rrow('Carbon-X \u00b7 CO\u2082','Trolmaster','$367.50','n2',4)
-  +rrow('Four controllers, invoiced','The stack Overseer replaces','$4,083.52','com',5)
-  +rrow('Obelisk \u00b7 all four functions','Overseer \u2014 quoted list','$2,500','ok',6)
-  +'<p class="uifoot">SOURCE: SUPPLIER INVOICES TO A LIVE COMMERCIAL FACILITY</p>'
-  +'</div></div>'
+  +'<section class="aichap fo" data-hex="#4FA8FF">'
+  +'<span class="fonum" aria-hidden="true">01</span>'
+  +'<div class="fohead"><p class="pnumc">ROUND 1 \u00b7 THE ROOM</p>'
+  +'<h2>How many boxes run one room?</h2>'
+  +'<p class="fosub">Count the controllers on the wall of one flower room. The Trolmaster column is a real invoice, line by line.</p></div>'
+  +'<div class="fogrid">'
+  +'<div class="fop" style="--vc:#FF5C5C;--i:1"><p class="fovn">TROLMASTER</p>'
+  +'<p class="fostat">4 <small>controllers</small></p><p class="foprice">$4,083.52 <i>\u00b7 invoiced</i></p>'
+  +'<ul class="fol"><li>HCS-3 climate \u2014 $932.57</li><li>NFS-3 irrigation \u2014 $932.40</li><li>Aqua-X Pro + AMP-3 \u2014 $1,851.05</li><li>Carbon-X CO\u2082 \u2014 $367.50</li></ul></div>'
+  +'<div class="fop" style="--vc:#B98BFF;--i:2"><p class="fovn">GROWLINK</p>'
+  +'<p class="fostat">1 <small>+ modules</small></p><p class="foprice">Quote-based <i>\u00b7 + subscription</i></p>'
+  +'<ul class="fol"><li>Central controller</li><li>Expansion modules per function</li><li>Better than four boxes</li><li>Still a room built from parts</li></ul></div>'
+  +'<div class="fop us" style="--vc:#2FD6C0;--i:3"><p class="fovn">OVERSEER</p>'
+  +'<p class="fostat">1 <small>Obelisk</small></p><p class="foprice">$2,500 <i>\u00b7 quoted list</i></p>'
+  +'<ul class="fol"><li>Climate + irrigation + fertigation + CO\u2082</li><li>One screen, one alarm list</li><li>One warranty, one vendor</li><li>$1,584 under the invoiced stack</li></ul></div>'
+  +'</div>'
+  +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
+  +'<p class="fowhy">FOUR INVOICED BOXES BECOME ONE \u2014 AT $1,584 LESS PER ROOM</p></div>'
   +'</section>'
 
-  +'<section class="aichap right" data-hex="#57C77A">'
-  +'<div class="achcopy"><p class="pnumc">ROUND 2 \u00b7 THE BUILD</p>'
-  +'<h2>Grow rooms are wet rooms.<br>Build like it.</h2>'
-  +'<p class="achp">Rooms get fogged, sprayed and hose-washed. The incumbent hardware on those walls is largely splash-rated consumer-grade plastic with mixed cabling. Overseer&#39;s entire platform is designed sealed \u2014 IP65/66 across every device \u2014 on one color-coded RJ45 backbone, with CO\u2082 life-safety on its own isolated bus that keeps working when everything else doesn&#39;t.</p>'
-  +'<ul class="achlist"><li>Design target: dust-tight, jet-wash safe, every enclosure</li><li>One cable language a new tech learns in an afternoon</li><li>Safety that never shares a wire with convenience</li></ul></div>'
-  +'<div class="achmock"><div class="uimock">'
-  +'<div class="uihead"><span class="uidot"></span>THE BUILD, SIDE BY SIDE</div>'
-  +rrow('Trolmaster','Splash-rated plastics \u00b7 mixed cabling \u00b7 CO\u2082 on shared comms','SHIPPING','n2',1)
-  +rrow('Growlink','Mixed enclosures \u00b7 cloud-centric architecture','SHIPPING','n2',2)
-  +rrow('Overseer','Sealed IP65/66 family \u00b7 RJ45 backbone \u00b7 isolated CO\u2082 bus \u00b7 RGB status on every box','DESIGNED','des',3)
-  +'<p class="uifoot">OVERSEER ENCLOSURES ARE A DESIGN TARGET \u2014 SEE THE ROADMAP</p>'
-  +'</div></div>'
+  +'<section class="aichap fo" data-hex="#57C77A">'
+  +'<span class="fonum" aria-hidden="true">02</span>'
+  +'<div class="fohead"><p class="pnumc">ROUND 2 \u00b7 THE BUILD</p>'
+  +'<h2>Grow rooms are wet rooms.</h2>'
+  +'<p class="fosub">Rooms get fogged, sprayed and hose-washed. What&#39;s actually on the wall matters.</p></div>'
+  +'<div class="fogrid">'
+  +'<div class="fop" style="--vc:#FF5C5C;--i:1"><p class="fovn">TROLMASTER</p>'
+  +'<p class="fostat">IP44<small>-class</small></p><p class="foprice">Shipping <i>\u00b7 today</i></p>'
+  +'<ul class="fol"><li>Splash-resistant plastics</li><li>Mixed cabling per device</li><li>CO\u2082 on shared comms</li><li>No device status language</li></ul></div>'
+  +'<div class="fop" style="--vc:#B98BFF;--i:2"><p class="fovn">GROWLINK</p>'
+  +'<p class="fostat">Varies</p><p class="foprice">Shipping <i>\u00b7 today</i></p>'
+  +'<ul class="fol"><li>Mixed enclosure ratings</li><li>Wired + wireless mix</li><li>Cloud-centric architecture</li><li>No device status language</li></ul></div>'
+  +'<div class="fop us" style="--vc:#2FD6C0;--i:3"><p class="fovn">OVERSEER</p>'
+  +'<p class="fostat">IP65/66</p><p class="foprice">Designed <i>\u00b7 pre-production</i></p>'
+  +'<ul class="fol"><li>Sealed across the entire family</li><li>One color-coded RJ45 backbone</li><li>CO\u2082 safety on its own isolated bus</li><li>RGB status ring on every box</li></ul></div>'
+  +'</div>'
+  +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
+  +'<p class="fowhy">ON PAPER \u2014 OURS ISN&#39;T MANUFACTURED YET. <a href="#/roadmap" style="color:#F5B23D">THE ROADMAP SAYS SO IN BOLD.</a></p></div>'
   +'</section>'
 
-  +'<section class="aichap" data-hex="#F5B23D">'
-  +'<div class="achcopy"><p class="pnumc">ROUND 3 \u00b7 THE TOLL BOOTH</p>'
-  +'<h2>The price on the box<br>isn&#39;t the price.</h2>'
-  +'<p class="achp">Both incumbents keep charging after the sale. Growlink&#39;s commercial software runs $250\u2013$1,000 per facility <i>per month</i>, sensors past the cap bill monthly each, and their AI is metered in credits. Trolmaster charges $15 per device per month just for API access to your own sensor data. Over five years, a commercial facility&#39;s software bill alone can pass $60,000.</p>'
-  +'<ul class="achlist"><li>Overseer&#39;s commitment: control runs locally, no subscription required</li><li>Your data is yours \u2014 API access included, not tolled</li><li>Five-year software cost by design: $0</li></ul></div>'
-  +'<div class="achmock"><div class="uimock">'
-  +'<div class="uihead"><span class="uidot"></span>WHAT YOU KEEP PAYING \u00b7 LIST PRICES</div>'
-  +rrow('Growlink Bloom','Commercial plan, 32-sensor cap','$250/MO','n2',1)
-  +rrow('Growlink Harvest','Larger facilities, 100 sensors','$1,000/MO','n2',2)
-  +rrow('Growlink extra sensors','Past the plan cap, each','$6\u201310/MO','n2',3)
-  +rrow('Growlink Nova AI','Metered credits, per 10K','$60\u2013100','n2',4)
-  +rrow('Trolmaster API','Access to your own data, per device','$15/MO','n2',5)
-  +rrow('Overseer','Local control \u00b7 API included \u00b7 no subscription','$0','ok',6)
-  +'<p class="uifoot">GROWLINK: SHOP.GROWLINK.COM LIST, JULY 2026 \u00b7 TROLMASTER: PUBLISHED API TERMS</p>'
-  +'</div></div>'
+  +'<section class="aichap fo" data-hex="#F5B23D">'
+  +'<span class="fonum" aria-hidden="true">03</span>'
+  +'<div class="fohead"><p class="pnumc">ROUND 3 \u00b7 THE TOLL BOOTH</p>'
+  +'<h2>The price on the box isn&#39;t the price.</h2>'
+  +'<p class="fosub">What each vendor keeps charging after the sale \u2014 list prices, July 2026.</p></div>'
+  +'<div class="fogrid">'
+  +'<div class="fop" style="--vc:#FF5C5C;--i:1"><p class="fovn">TROLMASTER</p>'
+  +'<p class="fostat">$15<small>/device/mo</small></p><p class="foprice">API toll <i>\u00b7 your own data</i></p>'
+  +'<ul class="fol"><li>App itself is free</li><li>$15 per device per month for API</li><li>A 30-device facility: $5,400/yr</li><li>Just to read your own sensors</li></ul></div>'
+  +'<div class="fop" style="--vc:#B98BFF;--i:2"><p class="fovn">GROWLINK</p>'
+  +'<p class="fostat">$250\u20131,000<small>/mo</small></p><p class="foprice">Per facility <i>\u00b7 commercial plans</i></p>'
+  +'<ul class="fol"><li>Bloom $250/mo \u00b7 32-sensor cap</li><li>Harvest $1,000/mo \u00b7 100 sensors</li><li>Extra sensors $6\u201310/mo each</li><li>Nova AI metered: $60\u2013100 per 10K</li></ul></div>'
+  +'<div class="fop us" style="--vc:#2FD6C0;--i:3"><p class="fovn">OVERSEER</p>'
+  +'<p class="fostat">$0</p><p class="foprice">By commitment <i>\u00b7 not a promo</i></p>'
+  +'<ul class="fol"><li>Control runs locally \u2014 no rent</li><li>API access included</li><li>Your data never gets a meter</li><li>5-year software cost: $0</li></ul></div>'
+  +'</div>'
+  +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
+  +'<p class="fowhy">FIVE YEARS OF COMMERCIAL SOFTWARE: $0 VS $15,000\u2013$60,000+</p></div>'
   +'</section>'
 
-  +'<section class="aichap right" data-hex="#B98BFF">'
-  +'<div class="achcopy"><p class="pnumc">ROUND 4 \u00b7 THE SOFTWARE</p>'
-  +'<h2>Credit where due \u2014<br>then the difference.</h2>'
-  +'<p class="achp">Straight up: Growlink&#39;s software is the best shipping today. Blueprints, comparative analytics, a named AI \u2014 it&#39;s real and it works. Trolmaster&#39;s app monitors and schedules. Overseer Intelligence is still in development \u2014 but it&#39;s being built on a different foundation: it runs <i>in the room</i>, not in a subscription cloud, and your harvest data never becomes someone else&#39;s asset.</p>'
-  +'<ul class="achlist"><li>Growlink: strongest today \u2014 cloud-dependent, metered, subscription-gated</li><li>Overseer: local-first autopilot + harvest learning, <a href="#/ai" style="color:var(--accent)">in development</a></li><li>Alarms and CO\u2082 safety never wait on any software, ours included</li></ul></div>'
-  +'<div class="achmock"><div class="uimock">'
-  +'<div class="uihead"><span class="uidot"></span>SOFTWARE, HONESTLY SCORED</div>'
-  +rrow('Growlink OS','Blueprints \u00b7 Nova AI \u00b7 analytics \u2014 subscription + credits','SHIPPING','ok',1)
-  +rrow('Trolmaster app','Monitoring, schedules, alerts','BASIC','pln',2)
-  +rrow('Overseer Intelligence','Crop autopilot + harvest learning \u00b7 local-first','IN DEV','bld',3)
-  +'<p class="uifoot">YES, WE GAVE THE COMPETITOR THE GREEN BADGE \u2014 THIS PAGE STAYS HONEST</p>'
-  +'</div></div>'
+  +'<section class="aichap fo" data-hex="#B98BFF">'
+  +'<span class="fonum" aria-hidden="true">04</span>'
+  +'<div class="fohead"><p class="pnumc">ROUND 4 \u00b7 THE SOFTWARE</p>'
+  +'<h2>Credit where due.</h2>'
+  +'<p class="fosub">Scored honestly \u2014 including the part where we&#39;re behind.</p></div>'
+  +'<div class="fogrid">'
+  +'<div class="fop" style="--vc:#FF5C5C;--i:1"><p class="fovn">TROLMASTER</p>'
+  +'<p class="fostat">Basic</p><p class="foprice">Shipping <i>\u00b7 free app</i></p>'
+  +'<ul class="fol"><li>Monitoring and alerts</li><li>Schedules and setpoints</li><li>No crop recipes</li><li>No learning loop</li></ul></div>'
+  +'<div class="fop" style="--vc:#B98BFF;--i:2"><p class="fovn">GROWLINK</p>'
+  +'<p class="fostat">Best today</p><p class="foprice">Shipping <i>\u00b7 subscription + credits</i></p>'
+  +'<ul class="fol"><li>Crop blueprints per cultivar</li><li>Nova AI \u2014 comparative analysis</li><li>Real, mature, genuinely good</li><li>Cloud-dependent and metered</li></ul></div>'
+  +'<div class="fop us" style="--vc:#2FD6C0;--i:3"><p class="fovn">OVERSEER</p>'
+  +'<p class="fostat">In dev</p><p class="foprice"><a href="#/ai" style="color:var(--vc)">Intelligence</a> <i>\u00b7 pilot-first</i></p>'
+  +'<ul class="fol"><li>Crop autopilot + harvest learning</li><li>Runs in the room, not the cloud</li><li>Alarms never wait on a model</li><li>Your data stays your asset</li></ul></div>'
+  +'</div>'
+  +'<div class="fostampwrap"><span class="stamp" style="--vc:#B98BFF">ROUND TO GROWLINK</span>'
+  +'<p class="fowhy">THE BEST SOFTWARE YOU CAN BUY TODAY IS THEIRS. WE SAID WE&#39;D BE HONEST.</p></div>'
+  +'</section>'
+
+  +'<section class="cat"><div class="cathead"><h2>The judges&#39; card</h2><span class="hint">FOUR ROUNDS, SCORED</span></div>'
+  +'<div class="scard">'
+  +'<div class="srow"><span class="sr">ROUND 1 \u00b7 THE ROOM</span><span class="sw" style="color:#2FD6C0">OVERSEER</span></div>'
+  +'<div class="srow"><span class="sr">ROUND 2 \u00b7 THE BUILD</span><span class="sw" style="color:#2FD6C0">OVERSEER <i>on paper</i></span></div>'
+  +'<div class="srow"><span class="sr">ROUND 3 \u00b7 THE TOLL BOOTH</span><span class="sw" style="color:#2FD6C0">OVERSEER</span></div>'
+  +'<div class="srow"><span class="sr">ROUND 4 \u00b7 THE SOFTWARE</span><span class="sw" style="color:#B98BFF">GROWLINK</span></div>'
+  +'<div class="srow"><span class="sr">SHIPPING HARDWARE, TODAY</span><span class="sw" style="color:#FF5C5C">THE INCUMBENTS</span></div>'
+  +'</div>'
+  +'<p style="font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--dim);margin:14px 0 0;text-align:center">WE SCORED TWO AGAINST OURSELVES. THAT&#39;S HOW YOU KNOW THE OTHER THREE ARE REAL.</p>'
   +'</section>'
 
   +'<section class="cat"><div class="cathead"><h2>The full matrix</h2><span class="hint">EVERYTHING AT ONCE</span></div>'
