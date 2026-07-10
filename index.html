@@ -238,27 +238,27 @@
     pointer-events:none;user-select:none;transition:-webkit-text-stroke .5s}
   .fohead{position:relative;max-width:64ch;margin:0 auto 28px;padding-top:44px}
   .fohead h2{font-size:clamp(26px,4vw,44px);font-weight:830;letter-spacing:-.025em;line-height:1.05;margin:0;text-wrap:balance}
-  .fosub{color:var(--mute);font-size:14.5px;max-width:54ch;margin:12px auto 0}
+  .fosub{color:var(--mute);font-size:16px;max-width:54ch;margin:12px auto 0}
   .fogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;text-align:left;max-width:1060px;margin:0 auto}
   @media(max-width:880px){.fogrid{grid-template-columns:1fr;max-width:480px}}
   .fo .fop{border:1px solid var(--edge);border-top:3px solid var(--vc);border-radius:14px;
     background:var(--panel);backdrop-filter:blur(8px);padding:18px 20px;opacity:0;transform:translateY(26px)}
   .fo.in .fop{animation:mrise .55s ease forwards;animation-delay:calc(var(--i)*.16s)}
   .fop.us{box-shadow:0 0 30px -12px var(--vc);border-color:color-mix(in srgb,var(--vc) 30%,var(--edge));border-top-color:var(--vc)}
-  .fovn{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--vc);margin:0 0 12px}
-  .fostat{font-size:clamp(24px,2.8vw,32px);font-weight:850;letter-spacing:-.02em;color:var(--text);margin:0 0 2px;line-height:1}
-  .fostat small{font-size:13px;font-weight:600;color:var(--mute);letter-spacing:0}
-  .foprice{font-family:var(--mono);font-size:12px;color:var(--vc);margin:4px 0 14px}
+  .fovn{font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:var(--vc);margin:0 0 12px}
+  .fostat{font-size:clamp(27px,3vw,36px);font-weight:850;letter-spacing:-.02em;color:var(--text);margin:0 0 2px;line-height:1}
+  .fostat small{font-size:15px;font-weight:600;color:var(--mute);letter-spacing:0}
+  .foprice{font-family:var(--mono);font-size:13.5px;color:var(--vc);margin:5px 0 14px}
   .foprice i{font-style:normal;color:var(--dim)}
   .fol{margin:0;padding:0;list-style:none}
-  .fol li{font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--mute);padding:6px 0;border-top:1px solid var(--edge)}
+  .fol li{font-size:14px;color:var(--mute);padding:8px 0;border-top:1px solid var(--edge);line-height:1.45}
   .fostampwrap{margin:30px auto 0}
   .stamp{display:inline-block;font-family:var(--mono);font-weight:700;font-size:clamp(13px,2vw,17px);
     letter-spacing:.22em;color:var(--vc);border:2px solid var(--vc);border-radius:9px;padding:11px 24px;
     transform:rotate(-4deg);opacity:0;box-shadow:0 0 22px -8px var(--vc)}
   .fo.in .stamp{animation:stampin .5s cubic-bezier(.2,1.4,.4,1) .8s forwards}
   @keyframes stampin{from{opacity:0;transform:rotate(-15deg) scale(1.8)}to{opacity:1;transform:rotate(-4deg) scale(1)}}
-  .fowhy{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--dim);margin:14px 0 0}
+  .fowhy{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--mute);margin:14px 0 0}
   @media(prefers-reduced-motion:reduce){
     .fo .fop{opacity:1;transform:none}
     .fo .stamp,.fo.in .stamp{animation:none;opacity:1}
@@ -267,9 +267,9 @@
   .srow{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 20px;
     border-bottom:1px solid var(--edge);background:var(--panel)}
   .srow:last-child{border-bottom:0}
-  .srow .sr{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--mute)}
-  .srow .sw{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.14em}
-  .srow .sw i{font-style:normal;font-weight:400;font-size:10px;color:var(--dim);letter-spacing:.06em}
+  .srow .sr{font-family:var(--mono);font-size:12.5px;letter-spacing:.1em;color:var(--mute)}
+  .srow .sw{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.14em}
+  .srow .sw i{font-style:normal;font-weight:400;font-size:11px;color:var(--dim);letter-spacing:.06em}
 
   /* comparison matrix */
   .cmpwrap{overflow-x:auto;border:1px solid var(--edge);border-radius:16px;background:var(--panel)}
@@ -277,9 +277,9 @@
   .cmp thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--mute);
     text-align:left;padding:14px 16px;border-bottom:1px solid var(--edge2)}
   .cmp thead th.hovr{color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
-  .cmp td{padding:13px 16px;border-bottom:1px solid var(--edge);vertical-align:top;font-size:13px}
+  .cmp td{padding:14px 16px;border-bottom:1px solid var(--edge);vertical-align:top;font-size:14px}
   .cmp tbody tr:last-child td{border-bottom:0}
-  .cmp td.lab{font-weight:600;color:var(--text);width:30%}
+  .cmp td.lab{font-weight:600;color:var(--text);width:30%;font-size:14.5px}
   .cmp td.covr{background:color-mix(in srgb,var(--accent) 5%,transparent)}
   .cm{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
     font-family:var(--mono);font-size:12px;font-weight:700;border:1px solid}
@@ -287,7 +287,7 @@
   .cm.n{color:#FF5C5C;border-color:color-mix(in srgb,#FF5C5C 45%,transparent);background:rgba(255,92,92,.08)}
   .cm.p{color:#F5B23D;border-color:color-mix(in srgb,#F5B23D 50%,transparent);background:rgba(245,178,61,.08)}
   .cm i{font-style:normal}
-  .cs{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--mute);margin-top:6px}
+  .cs{display:block;font-size:12.5px;color:var(--mute);margin-top:6px;line-height:1.4}
   .rendertag{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--dim);margin:10px 0 0;text-align:center}
   .rendertag a{color:#F5B23D}
 
@@ -523,8 +523,8 @@ function homeHTML(){
   +'<div class="heroprod"><div class="hhalo"></div><div class="hframe"><img src="'+cardImg('obelisk')+'" alt="Obelisk central controller" fetchpriority="high"></div><p class="hcap">OBELISK \u00b7 THE FLAGSHIP</p></div>'
   +'</section>'
   +'<section class="statstrip">'
-  +'<div class="scell"><p class="sv">4 \u2192 1</p><p class="sl">Four separate competitor controllers replaced by a single Obelisk, per room</p></div>'
-  +'<div class="scell"><p class="sv">$4,084 \u2192 $2,500</p><p class="sl">What the four-controller stack costs at real invoice prices \u2014 vs one Obelisk at list</p></div>'
+  +'<div class="scell"><p class="sv">3 \u2192 1</p><p class="sl">Three separate competitor controllers replaced by a single sealed Obelisk, per room</p></div>'
+  +'<div class="scell"><p class="sv">$0 / month</p><p class="sl">No software subscription, no per-device API tolls \u2014 incumbents charge up to $1,000/mo</p></div>'
   +'<div class="scell"><p class="sv">IP65 / IP66</p><p class="sl">Dust-tight, hose-wash sealed enclosures \u2014 where the incumbents are IP44 splash-resistant</p></div>'
   +'</section>'
   +'<section class="cat"><div class="cathead"><h2>How it works</h2><span class="hint">ONE LOOP, EVERY ROOM</span></div>'
@@ -927,17 +927,17 @@ function compareHTML(){
   +'<p class="fosub">Count the controllers on the wall of one flower room. The Trolmaster column is a real invoice, line by line.</p></div>'
   +'<div class="fogrid">'
   +'<div class="fop" style="--vc:#FF5C5C;--i:1"><p class="fovn">TROLMASTER</p>'
-  +'<p class="fostat">4 <small>controllers</small></p><p class="foprice">$4,083.52 <i>\u00b7 invoiced</i></p>'
-  +'<ul class="fol"><li>HCS-3 climate \u2014 $932.57</li><li>NFS-3 irrigation \u2014 $932.40</li><li>Aqua-X Pro + AMP-3 \u2014 $1,851.05</li><li>Carbon-X CO\u2082 \u2014 $367.50</li></ul></div>'
+  +'<p class="fostat">3 <small>controllers</small></p><p class="foprice">$2,232.47 <i>\u00b7 invoiced</i></p>'
+  +'<ul class="fol"><li>HCS-3 climate \u2014 $932.57</li><li>NFS-3 irrigation \u2014 $932.40</li><li>Carbon-X CO\u2082 \u2014 $367.50</li><li>Fertigation head-end (NFS-2 Pro) lives in a separate irrigation room</li></ul></div>'
   +'<div class="fop" style="--vc:#B98BFF;--i:2"><p class="fovn">GROWLINK</p>'
   +'<p class="fostat">1 <small>+ modules</small></p><p class="foprice">Quote-based <i>\u00b7 + subscription</i></p>'
   +'<ul class="fol"><li>Central controller</li><li>Expansion modules per function</li><li>Better than four boxes</li><li>Still a room built from parts</li></ul></div>'
   +'<div class="fop us" style="--vc:#2FD6C0;--i:3"><p class="fovn">OVERSEER</p>'
   +'<p class="fostat">1 <small>Obelisk</small></p><p class="foprice">$2,500 <i>\u00b7 quoted list</i></p>'
-  +'<ul class="fol"><li>Climate + irrigation + fertigation + CO\u2082</li><li>One screen, one alarm list</li><li>One warranty, one vendor</li><li>$1,584 under the invoiced stack</li></ul></div>'
+  +'<ul class="fol"><li>Climate + irrigation + fertigation + CO\u2082</li><li>One screen, one alarm list</li><li>Fertigation built in \u2014 no separate head-end</li><li>About $268 over the three-box stack</li></ul></div>'
   +'</div>'
   +'<div class="fostampwrap"><span class="stamp" style="--vc:#2FD6C0">ROUND TO OVERSEER</span>'
-  +'<p class="fowhy">FOUR INVOICED BOXES BECOME ONE \u2014 AT $1,584 LESS PER ROOM</p></div>'
+  +'<p class="fowhy">THREE BOXES BECOME ONE AT NEAR-PARITY \u2014 THE WIN IS CONSOLIDATION, NOT THE STICKER</p></div>'
   +'</section>'
 
   +'<section class="aichap fo" data-hex="#57C77A">'
@@ -1015,7 +1015,7 @@ function compareHTML(){
   +'<div class="cmpwrap"><table class="cmp">'
   +'<thead><tr><th></th><th class="hovr">OVERSEER</th><th>TROLMASTER</th><th>GROWLINK</th></tr></thead><tbody>'
   +'<tr><td class="lab">Hardware you can buy today</td><td class="covr">'+cmc('n','Pre-production \u2014 see roadmap')+'</td><td>'+cmc('y','Ships today')+'</td><td>'+cmc('y','Ships today')+'</td></tr>'
-  +'<tr><td class="lab">One controller per room, all four functions</td><td class="covr">'+cmc('y','Obelisk \u2014 by design')+'</td><td>'+cmc('n','Up to 4 separate controllers')+'</td><td>'+cmc('p','Controller + expansion modules')+'</td></tr>'
+  +'<tr><td class="lab">One controller per room, all four functions</td><td class="covr">'+cmc('y','Obelisk \u2014 by design')+'</td><td>'+cmc('n','3 separate controllers per room')+'</td><td>'+cmc('p','Controller + expansion modules')+'</td></tr>'
   +'<tr><td class="lab">Sealed IP65/66 across the line</td><td class="covr">'+cmc('y','Design target, every device')+'</td><td>'+cmc('n','Splash-rated class')+'</td><td>'+cmc('p','Varies by device')+'</td></tr>'
   +'<tr><td class="lab">One color-coded cable backbone</td><td class="covr">'+cmc('y','RJ45 daisy-chain')+'</td><td>'+cmc('n','Mixed cabling')+'</td><td>'+cmc('p','Mixed wired + wireless')+'</td></tr>'
   +'<tr><td class="lab">Isolated CO\u2082 life-safety bus</td><td class="covr">'+cmc('y','Dedicated line, fail-safe valves')+'</td><td>'+cmc('n')+'</td><td>'+cmc('n')+'</td></tr>'
@@ -1024,7 +1024,7 @@ function compareHTML(){
   +'<tr><td class="lab">No software subscription required</td><td class="covr">'+cmc('y','$0 by commitment')+'</td><td>'+cmc('y','App free')+'</td><td>'+cmc('n','$250\u2013$1,000/mo commercial')+'</td></tr>'
   +'<tr><td class="lab">API access to your own data</td><td class="covr">'+cmc('y','Included')+'</td><td>'+cmc('n','$15/device/month')+'</td><td>'+cmc('p','From $25/mo tier')+'</td></tr>'
   +'<tr><td class="lab">Crop recipes + AI shipping today</td><td class="covr">'+cmc('n','In development')+'</td><td>'+cmc('n','Basic scheduling')+'</td><td>'+cmc('y','Growlink OS + Nova')+'</td></tr>'
-  +'<tr><td class="lab">Reference room: hardware + install</td><td class="covr"><span class="cs" style="font-size:12px;color:var(--text)">$13,415 quoted</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">$10,907 invoiced</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">Quote-based + subscription</span></td></tr>'
+  +'<tr><td class="lab">Reference room: hardware + install</td><td class="covr"><span class="cs" style="font-size:13px;color:var(--text)">$13,415 quoted \u2014 incl. per-zone sensing</span></td><td><span class="cs" style="font-size:13px;color:var(--text)">$9,056 invoiced \u2014 lighter sensing</span></td><td><span class="cs" style="font-size:13px;color:var(--text)">Quote-based + subscription</span></td></tr>'
   +'<tr><td class="lab">5-year software cost, commercial facility</td><td class="covr"><span class="cs" style="font-size:12px;color:var(--text)">$0</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">$0 (API extra if used)</span></td><td><span class="cs" style="font-size:12px;color:var(--text)">$15,000\u2013$60,000+</span></td></tr>'
   +'</tbody></table></div>'
   +'<p style="font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--dim);margin:12px 0 0">TROLMASTER: ACTUAL SUPPLIER INVOICES \u00b7 GROWLINK: PUBLIC LIST JULY 2026 \u00b7 OVERSEER: QUOTED LIST, PRE-PRODUCTION \u2014 TRADEMARKS BELONG TO THEIR OWNERS, REFERENCED FOR COMPARISON ONLY</p>'
